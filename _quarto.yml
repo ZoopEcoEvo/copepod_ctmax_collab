@@ -1,0 +1,28 @@
+project:
+  type: website
+  output-dir: docs
+
+website:
+  title: "Collab Page"
+  navbar:
+    left:
+      - href: about.qmd
+        text: About Us
+      - href: data_summary.qmd
+        text: Data Summary
+      - href: protocols.qmd
+        text: Our Protocols
+      - href: copepod_guide.qmd
+        text: Copepod ID Guide
+      - href: log.qmd
+        text: Travel Log
+
+format:
+  html:
+    theme: litera #lux, yeti
+    fontsize: 1.2em
+    css: styles.css
+    toc: true
+
+editor: visual
+

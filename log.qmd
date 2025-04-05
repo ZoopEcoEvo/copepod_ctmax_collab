@@ -1,0 +1,5 @@
+---
+title: "Travel Log"
+---
+
+This page will compile daily summaries of the group activities (pictures of the sampling sites, description of sampling activities, etc.).
