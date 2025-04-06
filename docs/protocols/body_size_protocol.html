@@ -120,7 +120,16 @@ ul.task-list li input[type="checkbox"] {
 <!-- sidebar -->
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#supplies" id="toc-supplies" class="nav-link active" data-scroll-target="#supplies">Supplies</a>
+  <ul class="collapse">
+  <li><a href="#body-size" id="toc-body-size" class="nav-link" data-scroll-target="#body-size">Body Size</a></li>
+  </ul></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -144,8 +153,36 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
+<p>This protocol describes how to measure fecundity and body size for brooding copepods like <em>Leptodiaptomus</em>. While the fecundity measurement approach is taxon-specific, the body size measurement method will work for essentially all Calanoid copepods.</p>
+<section id="supplies" class="level1">
+<h1>Supplies</h1>
+<p>Lid from a 96-well plate<br>
+Inverted microscope (or dissection scope with large magnification, if working with larger copepods)<br>
+Camera (or smart phone adapter for ocular lens)</p>
+<section id="body-size" class="level2">
+<h2 class="anchored" data-anchor-id="body-size">Body Size</h2>
+<ol type="1">
+<li><p>Isolate one individual per well. Try to leave enough water to ensure the droplet doesn’t evaporate before photographing the individual, but not so much water that droplets will merge during transport.</p></li>
+<li><p>Photograph the scale bar. This should be done at the beginning of every session. Once the scale bar is photographed, <strong>do not</strong> alter the magnification.</p></li>
+<li><p>Carefully remove water from the droplet using a small pipette until a film is formed. Take care not to break the surface tension. The film should be a uniform depth across the entire well. This should hold the copepod fairly still, allowing you to get a clear photograph of the individual (prevents movement blur and prevents magnification by the water droplet).</p></li>
+<li><p>Photograph the individual. Ensure that the entire prosome is clearly visible. Make sure you have some way of matching the picture to the individual (name the files, record the order in which they were photographed, etc.).</p></li>
+<li><p>In ImageJ, start with the picture of the scale bar. With the straight line segment tool selected, drag a segment along the length of the scale bar. In the ‘Analyze’ menu, select ‘Set Scale’. Leave the ‘Distance in pixels’ as is (this takes the measurement from the length of the segment you drew onto the scale bar). Input the ‘Known distance’ (usually 1 or 2 mm, depending on the scale bar). Leave the ‘Pixel aspect ratio’ as 1. Make sure you check the ‘Global’ box before hitting ‘OK’. From here on, when you make a measurement (command M, on a Mac) from a straight line segment, the value returned will be in mm instead of pixels.</p></li>
+</ol>
+<div class="protocolinfo">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../images/ImageJ_prosome.png" class="img-fluid figure-img"></p>
+<figcaption>An example segment used to measure prosome length for a calanoid copepod.</figcaption>
+</figure>
+</div>
+</div>
+<ol start="6" type="1">
+<li>When measuring copepod body size, we use the prosome length. We will exclude metasomal wings when present, and measure from the anterior tip of the prosome to the urosome, keeping the line aligned with the central body axis.</li>
+</ol>
 
 
+</section>
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

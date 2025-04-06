@@ -148,7 +148,7 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>This page describes the general workflow for the project.</p>
+<p>This page describes the general workflow for the project. Protocols are included for certain steps in the workflow.</p>
 <div class="cell" width="100%" data-theme="neutral" data-layout-align="default">
 <div class="cell-output-display">
 <div>
@@ -156,22 +156,28 @@ ul.task-list li input[type="checkbox"] {
 <div>
 <pre class="mermaid mermaid-js">flowchart TB
   A[Environmental \nParameters] --- C[Field Collections]
-  B[Plankton Tows] --- C[Field Collections]
+  B[Plankton Tows] --- C[&lt;u&gt;Field Collections&lt;/u&gt;]
+      style C color:#4582EC;
   
   C --&gt; D[Lab]
   
   D --&gt; |Preserved| E[Dissections]
-  E --&gt; F[Species IDs]
+  E --&gt; F[&lt;u&gt;Species IDs&lt;/u&gt;]
+       style F color:#4582EC;
   E --&gt; G[Imaging]
-  F --&gt; H[Genome Size]
+  F --&gt; H[&lt;u&gt;Genome Size&lt;/u&gt;]
+       style H color:#4582EC;
   F --&gt; I[Samples archived \nand distributed]
   
   D --&gt; |Preserved| J[Bulk Samples]
   J -- Ethanol replaced ---&gt; I
   
-  D -- Live ---&gt; K[CTmax]
-  K --&gt; L[Body Size]
-  L --&gt; |Preserved| M[Species IDs]
+  D -- Live ---&gt; K[&lt;u&gt;CTmax&lt;/u&gt;]
+       style K color:#4582EC;
+  K --&gt; L[&lt;u&gt;Body Size&lt;/u&gt;]
+       style L color:#4582EC;
+  L --&gt; |Preserved| M[&lt;u&gt;Species IDs&lt;/u&gt;]
+       style M color:#4582EC;
   M --&gt; I
 
 click C "https://zoopecoevo.github.io/copepod_ctmax_collab/protocols/collection_protocol.html"
@@ -188,12 +194,6 @@ click L "https://zoopecoevo.github.io/copepod_ctmax_collab/protocols/body_size_p
 </div>
 </div>
 </div>
-<p>This page will also include links to protocols for the main components of our project. These might include:</p>
-<ul>
-<li><p><a href="./protocols/ctmax_protocol.html">CTmax measurements</a></p></li>
-<li><p>Body size measurements</p></li>
-<li><p>Copepod collection and dissection for ID</p></li>
-</ul>
 
 
 

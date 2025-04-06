@@ -4,7 +4,7 @@ mermaid:
       theme: neutral
 ---
 
-This page describes the general workflow for the project.
+This page describes the general workflow for the project. Protocols are included for certain steps in the workflow.
 
 ```{mermaid}
 %%| width: 100%
@@ -12,22 +12,28 @@ This page describes the general workflow for the project.
 
 flowchart TB
   A[Environmental \nParameters] --- C[Field Collections]
-  B[Plankton Tows] --- C[Field Collections]
+  B[Plankton Tows] --- C[<u>Field Collections</u>]
+      style C color:#4582EC;
   
   C --> D[Lab]
   
   D --> |Preserved| E[Dissections]
-  E --> F[Species IDs]
+  E --> F[<u>Species IDs</u>]
+       style F color:#4582EC;
   E --> G[Imaging]
-  F --> H[Genome Size]
+  F --> H[<u>Genome Size</u>]
+       style H color:#4582EC;
   F --> I[Samples archived \nand distributed]
   
   D --> |Preserved| J[Bulk Samples]
   J -- Ethanol replaced ---> I
   
-  D -- Live ---> K[CTmax]
-  K --> L[Body Size]
-  L --> |Preserved| M[Species IDs]
+  D -- Live ---> K[<u>CTmax</u>]
+       style K color:#4582EC;
+  K --> L[<u>Body Size</u>]
+       style L color:#4582EC;
+  L --> |Preserved| M[<u>Species IDs</u>]
+       style M color:#4582EC;
   M --> I
 
 click C "https://zoopecoevo.github.io/copepod_ctmax_collab/protocols/collection_protocol.html"
@@ -39,11 +45,3 @@ click L "https://zoopecoevo.github.io/copepod_ctmax_collab/protocols/body_size_p
 
 
 ```
-
-This page will also include links to protocols for the main components of our project. These might include:
-
--   [CTmax measurements](protocols/ctmax_protocol.qmd)
-
--   Body size measurements
-
--   Copepod collection and dissection for ID

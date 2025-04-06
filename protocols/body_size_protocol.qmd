@@ -1,3 +1,29 @@
 ---
 title: "Body Size Protocol"
 ---
+
+This protocol describes how to measure fecundity and body size for brooding copepods like *Leptodiaptomus*. While the fecundity measurement approach is taxon-specific, the body size measurement method will work for essentially all Calanoid copepods.
+
+# Supplies
+
+Lid from a 96-well plate\
+Inverted microscope (or dissection scope with large magnification, if working with larger copepods)\
+Camera (or smart phone adapter for ocular lens)
+
+## Body Size
+
+1.  Isolate one individual per well. Try to leave enough water to ensure the droplet doesn't evaporate before photographing the individual, but not so much water that droplets will merge during transport.
+
+2.  Photograph the scale bar. This should be done at the beginning of every session. Once the scale bar is photographed, **do not** alter the magnification.
+
+3.  Carefully remove water from the droplet using a small pipette until a film is formed. Take care not to break the surface tension. The film should be a uniform depth across the entire well. This should hold the copepod fairly still, allowing you to get a clear photograph of the individual (prevents movement blur and prevents magnification by the water droplet).
+
+4.  Photograph the individual. Ensure that the entire prosome is clearly visible. Make sure you have some way of matching the picture to the individual (name the files, record the order in which they were photographed, etc.).
+
+5.  In ImageJ, start with the picture of the scale bar. With the straight line segment tool selected, drag a segment along the length of the scale bar. In the 'Analyze' menu, select 'Set Scale'. Leave the 'Distance in pixels' as is (this takes the measurement from the length of the segment you drew onto the scale bar). Input the 'Known distance' (usually 1 or 2 mm, depending on the scale bar). Leave the 'Pixel aspect ratio' as 1. Make sure you check the 'Global' box before hitting 'OK'. From here on, when you make a measurement (command M, on a Mac) from a straight line segment, the value returned will be in mm instead of pixels.
+
+::: protocolinfo
+![An example segment used to measure prosome length for a calanoid copepod.](/images/ImageJ_prosome.png)
+:::
+
+6.  When measuring copepod body size, we use the prosome length. We will exclude metasomal wings when present, and measure from the anterior tip of the prosome to the urosome, keeping the line aligned with the central body axis.

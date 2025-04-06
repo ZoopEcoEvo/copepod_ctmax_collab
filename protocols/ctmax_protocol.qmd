@@ -2,4 +2,45 @@
 title: "CTmax Protocol"
 ---
 
-A description of the methods used for CTmax experiments, illustrated with images from throughout the trip.
+This assay determines the critical thermal maxima for small ectotherms like copepods.
+
+# Supplies
+
+CTmax device (reservoir, water bath, temperature logger)\
+10 50-ml glass vials
+
+# Steps
+
+1.  Turn on the water bath setup and temperature logger, and monitor until temperature stabilizes.
+
+    -   After the pumps are running, check to make sure the heating element in the reservoir is completely covered by water. If the top is exposed, add tap water.
+
+2.  Adjust to the temperature animals were collected at (using either the heating element or by adding ice).
+
+3.  Add 20 mL of bottled spring water to each tube. The water circulating through the bath will bring the tubes to the correct temperature.
+
+4.  When the water bath is at the correct temperature, add one copepod to each tube.
+
+5.  Wait for 10 minutes, then check each individual to ensure they are behaving normally and responding to stimuli.
+
+6.  Turn on the water heater, restart the temperature logger and start the stopwatch
+
+    -   **CHECK POINT**: Make sure all three components (heater, temperature logger, stopwatch) are operational before continuing. Failure of any will result in an unusable experimental replicate.
+    -   Start the stopwatch and temperature logger simultaneously.
+    -   Make sure to observe the correct start up messages at \~2 minutes on the temperature logger. If you miss them, simply restart the temperature logger and stopwatch.
+
+7.  Monitor the individuals as temperature ramps.
+
+8.  Using the data sheets, record the time when each individual reaches their CTmax.
+
+    -   Remember the three indicators: no response to stimuli for 5-10 seconds, antennules in abnormal position, and a bend in the urosome.
+
+9.  Remove individuals from the water bath after they reach their CTmax. These tubes do not need to be monitored any longer.
+
+10. Once all individuals have been removed, stop the temperature logger and turn off the water bath.
+
+    -   **CHECK POINT**: Is the heating element unplugged?
+
+11. After the device is shut down, double check all data sheets are correctly filled out. Remove the microSD card from the Arduino logger and transfer the temperature data to the Google Drive. Do not open the file, as this can mess with the format of the date column.
+
+This is the end of the CTmax assay. If other phenotypic measurements are going to be made, typically you will remove each individual from their tube and place them on the lid from a 96-well plate for easier examination under a microscope. Make sure to keep track of which individual they are (make sure the Tube ID matches the well number).
