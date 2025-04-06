@@ -1,5 +1,7 @@
 ---
 title: "Protocols"
+mermaid:
+      theme: neutral
 ---
 
 This page describes the general workflow for the project.
@@ -8,8 +10,7 @@ This page describes the general workflow for the project.
 %%| width: 100%
 %%| theme: neutral
 
-
-flowchart LR
+flowchart TB
   A[Environmental \nParameters] --- C[Field Collections]
   B[Plankton Tows] --- C[Field Collections]
   
@@ -28,6 +29,14 @@ flowchart LR
   K --> L[Body Size]
   L --> |Preserved| M[Species IDs]
   M --> I
+
+click C "https://zoopecoevo.github.io/copepod_ctmax_collab/protocols/collection_protocol.html"
+click F "https://zoopecoevo.github.io/copepod_ctmax_collab/copepod_guide.html"
+click M "https://zoopecoevo.github.io/copepod_ctmax_collab/copepod_guide.html"
+click H "https://zoopecoevo.github.io/copepod_ctmax_collab/protocols/genome_size_protocol.html"
+click K "https://zoopecoevo.github.io/copepod_ctmax_collab/protocols/ctmax_protocol.html"
+click L "https://zoopecoevo.github.io/copepod_ctmax_collab/protocols/body_size_protocol.html"
+
 
 ```
 

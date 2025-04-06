@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Home Page - Protocols</title>
+<title>Home Page - Collection Protocol</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -23,22 +23,22 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<script src="site_libs/quarto-html/quarto.js"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -66,13 +66,9 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
-<meta name="mermaid-theme" content="neutral">
-<script src="site_libs/quarto-diagram/mermaid.min.js"></script>
-<script src="site_libs/quarto-diagram/mermaid-init.js"></script>
-<link href="site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
 
 
-<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="../styles.css">
 </head>
 
 <body class="nav-fixed">
@@ -82,7 +78,7 @@ ul.task-list li input[type="checkbox"] {
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="./index.html">
+    <a class="navbar-brand" href="../index.html">
     <span class="navbar-title">Home Page</span>
     </a>
   </div>
@@ -93,23 +89,23 @@ ul.task-list li input[type="checkbox"] {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="./about.html"> 
+    <a class="nav-link" href="../about.html"> 
 <span class="menu-text">About Us</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./data_summary.html"> 
+    <a class="nav-link" href="../data_summary.html"> 
 <span class="menu-text">Data Summary</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link active" href="./protocols.html" aria-current="page"> 
+    <a class="nav-link" href="../protocols.html"> 
 <span class="menu-text">Our Protocols</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./copepod_guide.html"> 
+    <a class="nav-link" href="../copepod_guide.html"> 
 <span class="menu-text">Copepod ID Guide</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./log.html"> 
+    <a class="nav-link" href="../log.html"> 
 <span class="menu-text">Travel Log</span></a>
   </li>  
 </ul>
@@ -131,7 +127,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Protocols</h1>
+<h1 class="title">Collection Protocol</h1>
 </div>
 
 
@@ -148,52 +144,6 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>This page describes the general workflow for the project.</p>
-<div class="cell" width="100%" data-theme="neutral" data-layout-align="default">
-<div class="cell-output-display">
-<div>
-<p></p><figure class="figure"><p></p>
-<div>
-<pre class="mermaid mermaid-js">flowchart TB
-  A[Environmental \nParameters] --- C[Field Collections]
-  B[Plankton Tows] --- C[Field Collections]
-  
-  C --&gt; D[Lab]
-  
-  D --&gt; |Preserved| E[Dissections]
-  E --&gt; F[Species IDs]
-  E --&gt; G[Imaging]
-  F --&gt; H[Genome Size]
-  F --&gt; I[Samples archived \nand distributed]
-  
-  D --&gt; |Preserved| J[Bulk Samples]
-  J -- Ethanol replaced ---&gt; I
-  
-  D -- Live ---&gt; K[CTmax]
-  K --&gt; L[Body Size]
-  L --&gt; |Preserved| M[Species IDs]
-  M --&gt; I
-
-click C "https://zoopecoevo.github.io/copepod_ctmax_collab/protocols/collection_protocol.html"
-click F "https://zoopecoevo.github.io/copepod_ctmax_collab/copepod_guide.html"
-click M "https://zoopecoevo.github.io/copepod_ctmax_collab/copepod_guide.html"
-click H "https://zoopecoevo.github.io/copepod_ctmax_collab/protocols/genome_size_protocol.html"
-click K "https://zoopecoevo.github.io/copepod_ctmax_collab/protocols/ctmax_protocol.html"
-click L "https://zoopecoevo.github.io/copepod_ctmax_collab/protocols/body_size_protocol.html"
-
-
-</pre>
-</div>
-<p></p></figure><p></p>
-</div>
-</div>
-</div>
-<p>This page will also include links to protocols for the main components of our project. These might include:</p>
-<ul>
-<li><p><a href="./protocols/ctmax_protocol.html">CTmax measurements</a></p></li>
-<li><p>Body size measurements</p></li>
-<li><p>Copepod collection and dissection for ID</p></li>
-</ul>
 
 
 
