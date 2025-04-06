@@ -2,6 +2,8 @@
 title: "Collection Protocol"
 ---
 
+Information on methods for collecting samples.
+
 1.  Retrieve the collection kit from the copepod room.
 
     -   This kit should contain the **field notebook**, the **large plankton net**, a **cod end**, a **thermometer**, and the **insulated carrier** (large black water bottle). Other supplies that may be useful are a couple 4 qt cubes with lids, the hand-held microscope, and a salinometer.
