@@ -66,6 +66,9 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
+<script src="site_libs/quarto-diagram/mermaid.min.js"></script>
+<script src="site_libs/quarto-diagram/mermaid-init.js"></script>
+<link href="site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
 
 
 <link rel="stylesheet" href="styles.css">
@@ -144,7 +147,40 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>This page will include links to protocols for the main components of our project. These might include:</p>
+<p>This page describes the general workflow for the project.</p>
+<div class="cell" width="100%" data-theme="neutral" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">
+flowchart LR
+  A[Environmental \nParameters] --- C[Field Collections]
+  B[Plankton Tows] --- C[Field Collections]
+  
+  C --&gt; D[Lab]
+  
+  D --&gt; |Preserved| E[Dissections]
+  E --&gt; F[Species IDs]
+  E --&gt; G[Imaging]
+  F --&gt; H[Genome Size]
+  F --&gt; I[Samples archived \nand distributed]
+  
+  D --&gt; |Preserved| J[Bulk Samples]
+  J -- Ethanol replaced ---&gt; I
+  
+  D -- Live ---&gt; K[CTmax]
+  K --&gt; L[Body Size]
+  L --&gt; |Preserved| M[Species IDs]
+  M --&gt; I
+
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+<p>This page will also include links to protocols for the main components of our project. These might include:</p>
 <ul>
 <li><p><a href="./protocols/ctmax_protocol.html">CTmax measurements</a></p></li>
 <li><p>Body size measurements</p></li>

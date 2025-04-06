@@ -2,7 +2,36 @@
 title: "Protocols"
 ---
 
-This page will include links to protocols for the main components of our project. These might include:
+This page describes the general workflow for the project.
+
+```{mermaid}
+%%| width: 100%
+%%| theme: neutral
+
+
+flowchart LR
+  A[Environmental \nParameters] --- C[Field Collections]
+  B[Plankton Tows] --- C[Field Collections]
+  
+  C --> D[Lab]
+  
+  D --> |Preserved| E[Dissections]
+  E --> F[Species IDs]
+  E --> G[Imaging]
+  F --> H[Genome Size]
+  F --> I[Samples archived \nand distributed]
+  
+  D --> |Preserved| J[Bulk Samples]
+  J -- Ethanol replaced ---> I
+  
+  D -- Live ---> K[CTmax]
+  K --> L[Body Size]
+  L --> |Preserved| M[Species IDs]
+  M --> I
+
+```
+
+This page will also include links to protocols for the main components of our project. These might include:
 
 -   [CTmax measurements](protocols/ctmax_protocol.qmd)
 
