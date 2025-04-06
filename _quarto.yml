@@ -21,6 +21,7 @@ format:
   html:
     theme: minimal #litera #lux, yeti
     fontsize: 1.2em
+    css: styles.css
     toc: true
 
 editor: visual
