@@ -3,3 +3,36 @@ title: "Data Summary"
 ---
 
 This page will summarize the data collected, including the distribution of sampling sites, the species collected, and some basic summaries of the data collected.
+
+```{r message=F, warning=F, echo = F}
+library(tidyverse)
+
+library(rnaturalearth)
+
+world <- ne_countries(scale = "medium", returnclass = "sf")
+Europe <- world[which(world$continent == "Europe"),]
+ggplot(Europe) +
+  geom_sf() + 
+  coord_sf(xlim = c(5,30), ylim = c(45,60), expand = FALSE) + 
+  theme_bw() + 
+  theme(panel.grid = element_blank())
+
+```
+
+Placeholder data
+
+```{r message=F, warning=F, echo = F}
+
+tibble("coll_temp" = sample(x = c(10:25), size = 10, replace = T)) %>% 
+  group_by(row_number()) %>%  
+  mutate(ctmax = (coll_temp * 0.2 + 20) + rnorm(n = 1, mean = 0, sd = 0.8)) %>% 
+  ggplot(aes(x = coll_temp, y = ctmax)) + 
+  geom_point(size = 3) + 
+  labs(x = "Temperature (°C)",
+       y = "CTmax (°C)") + 
+  theme_bw() + 
+  theme(panel.grid = element_blank(),
+        axis.text = element_text(size = 16),
+        axis.title = element_text(size = 18))
+
+```

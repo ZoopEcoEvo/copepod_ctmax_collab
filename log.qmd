@@ -1,5 +1,19 @@
 ---
 title: "Travel Log"
+listing: 
+  contents: log_entries
+  sort: "date"
+  type: default
+  categories: false
+  sort-ui: false
+  filter-ui: false
+  fields: 
+    - date
+    - image
+    - title
+    - description
+page-layout: full
+title-block-banner: false
 ---
 
 This page will compile daily summaries of the group activities (pictures of the sampling sites, description of sampling activities, etc.).

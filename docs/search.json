@@ -25,20 +25,48 @@
     "href": "data_summary.html",
     "title": "Data Summary",
     "section": "",
-    "text": "This page will summarize the data collected, including the distribution of sampling sites, the species collected, and some basic summaries of the data collected."
+    "text": "This page will summarize the data collected, including the distribution of sampling sites, the species collected, and some basic summaries of the data collected.\n\n\n\n\n\n\n\n\n\nPlaceholder data"
   },
   {
     "objectID": "copepod_guide.html",
     "href": "copepod_guide.html",
     "title": "Copepod IDs",
     "section": "",
-    "text": "This page will compile a visual guide to the species we’ve collected, including photographs and notes on identification. This is a work-in-progress example for the calanoid copepods of Lake Champlain."
+    "text": "This page will compile a visual guide to the species we’ve collected, including photographs and notes on identification. This is a work-in-progress example for the calanoid copepods of Lake Champlain - we could consider something similar."
   },
   {
     "objectID": "log.html",
     "href": "log.html",
     "title": "Travel Log",
     "section": "",
-    "text": "This page will compile daily summaries of the group activities (pictures of the sampling sites, description of sampling activities, etc.)."
+    "text": "This page will compile daily summaries of the group activities (pictures of the sampling sites, description of sampling activities, etc.).\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nEXAMPLE POST\n\n\n\n\n\nDESCRIPTION OF SAMPLING SITE, COLLECTIONS, ETC.\n\n\n\n\n\nJul 20, 2025\n\n\n\n\n\n\nNo matching items"
+  },
+  {
+    "objectID": "log_entries/test.html",
+    "href": "log_entries/test.html",
+    "title": "EXAMPLE POST",
+    "section": "",
+    "text": "Text describing activities.\nLots of images of the team doing the collections and the experiments.\n\n\n\nExample image"
+  },
+  {
+    "objectID": "protocols/ctmax_protocol.html",
+    "href": "protocols/ctmax_protocol.html",
+    "title": "CTmax Protocol",
+    "section": "",
+    "text": "A description of the methods used for CTmax experiments, illustrated with images from throughout the trip."
+  },
+  {
+    "objectID": "about.html#team-members",
+    "href": "about.html#team-members",
+    "title": "About the Project",
+    "section": "Team Members",
+    "text": "Team Members\nGroup photo & list of members and affiliations\nMember - Affiliation\nMember - Affiliation\nMember - Affiliation\nMember - Affiliation\nMember - Affiliation\nMember - Affiliation\nMember - Affiliation\nMember - Affiliation\nMember - Affiliation\nMember - Affiliation"
+  },
+  {
+    "objectID": "about.html#funding-acknowledgments",
+    "href": "about.html#funding-acknowledgments",
+    "title": "About the Project",
+    "section": "Funding acknowledgments",
+    "text": "Funding acknowledgments"
   }
 ]

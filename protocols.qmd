@@ -4,7 +4,7 @@ title: "Protocols"
 
 This page will include links to protocols for the main components of our project. These might include:
 
--   CTmax measurements
+-   [CTmax measurements](protocols/ctmax_protocol.qmd)
 
 -   Body size measurements
 

@@ -1,0 +1,13 @@
+---
+title: "EXAMPLE POST"
+description: "DESCRIPTION OF SAMPLING SITE, COLLECTIONS, ETC."
+date: "07/20/2025"
+draft: false
+image: "/images/2025_winter_fieldwork.jpeg"
+---
+
+Text describing activities.
+
+Lots of images of the team doing the collections and the experiments.
+
+![Example image](/images/2025_winter_fieldwork.jpeg)
