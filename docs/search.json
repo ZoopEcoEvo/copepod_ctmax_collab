@@ -32,7 +32,7 @@
     "href": "copepod_guide.html",
     "title": "Copepod IDs",
     "section": "",
-    "text": "This page will compile a visual guide to the species we’ve collected, including photographs and notes on identification. This is a work-in-progress example for the calanoid copepods of Lake Champlain - we could consider something similar."
+    "text": "This page will compile a visual guide to the species we’ve collected, including photographs and notes on identification. This is a work-in-progress example for the calanoid copepods of Lake Champlain - we could consider something similar.\nThe information below is a guide to some of the features that might be useful for quickly identifying copepods in Pomeranian Lake district and other regions. This information was compiled by Maria Hołyńska."
   },
   {
     "objectID": "log.html",
@@ -60,7 +60,7 @@
     "href": "about.html#team-members",
     "title": "About the Project",
     "section": "Team Members",
-    "text": "Team Members\nGroup photo & list of members and affiliations\nŁukasz Sługocki - University of Szczecin\nMaria Hołyńska - Polish Academy of Sciences\nGrace Wyngaard - James Madison University\nMatthew Sasaki - University of Massachusetts Lowell\nLarysa Samchyshyna - Affiliation\nDagmar Frisch - IGB Berlin\nKacper Nowakowski - University of Szczecin\nUrszula Mordacz - University of Szczecin\nRoman Lysenko - Taras Shevchenko National University of Kyiv\nLeonid Svetlichny - National Academy of Sciences of Ukraine"
+    "text": "Team Members\nŁukasz Sługocki\nMaria Hołyńska\nGrace Wyngaard\nMatthew Sasaki\nLarysa Samchyshyna\nDagmar Frisch\nKacper Nowakowski\nUrszula Mordacz\nRoman Lysenko\nLeonid Svetlichny"
   },
   {
     "objectID": "about.html#funding-acknowledgments",
@@ -131,5 +131,12 @@
     "title": "Copepod IDs",
     "section": "Calanoids",
     "text": "Calanoids\n\nLimnocalanus macrurus\n\n\n\n\n\n2.0‒3.0 mm, P1‒P4 enp three-segmented, caudal rami long, both lateral and medial margin pilose; antennule reaching beyond prosome. [Sars 1914-1918]\n\n\nHeterocope appendiculata\n\n\n\n\n\n2.0‒2.2 mm; caudal rami short with 3-3 terminal setae; P1‒P4 enp one-segmented; female genital plate with finger-like lobes; antennule reaching beyond caudal rami. [Sars 1914-1918]\n\n\nEurytemora velox\n\n\n\n\n\n1.3‒2.2 mm; P2‒P4 enp two-segmented; A1 reaching posterior end of prosome; caudal rami long with 4 terminal setae; female pediger 5, lateral wings broad/irregular shape; female P5: exp1 with 1 lateral spine, and inner outgrowth posteriorly directed. [Sars 1914-1918]\n\n\nEurytemora lacustris\n\n\n\n\n\n1.0‒1.5 mm; A1 reaching posterior end of prosome; P2‒P4 enp two-segmented; caudal rami long, with 4 terminal setae; female, pediger 5 without lateral wings; female P5, exp1 with 2 lateral spines, and inner outgrowth medially directed. [Sars 1914-1918]\n\n\nEurytemora carolleeae\n\n\n\n\n\nca 1.2 mm; P2‒P4 enp two-segmented; caudal rami long, with 4 terminal setae; female pediger 5, lateral wings triangular, posteriorly directed; female genital somite with wing-like outgrowth; female P5, exp1 with 2 lateral spines, and inner outgrowth posteriorly directed. [Alekseev & Souissi 2011]\n\n\nAdditional notes on Eurytemora species\n\n\n\n\n\nFifth pair of legs of related Eurytemora species (A) E. affinis(B) E. velox(C) E. lacustris. Abbreviations: AS – apical seta, DS – distal segment, LS – lateral spine, LB – left basipod, RB – right basipod. Arrows indicate important characteristics of fifth pair of legs. [Sługocki et al 2019]\n\n\n\n\n\nEurytemora carolleeae sp. nov. (A–D) and E. affinis (Poppe, 1880) (E–F): A, female mandible, arrow indicating a gap; B, male mandible, arrow indicating a gap; C, female genital somite with wing-like outgrowth; D, male leg 5 with arrow indicating left basipod; E, female genital somite without wing-like outgrowth; F, male P5, arrow indicating left basipod. (Photo: Mrs Natalia Sukhikh) [Alekseev & Souissi 2011]\n\n\nEudiaptomus graciloides\n\n\n\n\n\n1.0‒1.5 mm; P2‒P4 enp three-segmented; caudal rami short, with 4 terminal setae; antennule reaching beyond caudal rami; male, right P5: enp slender, and exp2 lateral spine in distal half of segment. [Sars 1914-1918]\n\n\nEudiaptomus gracilis\n\n\n\n\n\n1.0‒2.0 mm; P2‒P4 enp three-segmented; caudal rami short, with 4 terminal setae; antennule beyond caudal rami; male, right P5: enp large, and exp2 lateral spine in proximal half/middle of segment. [Sars 1914- 1918]"
+  },
+  {
+    "objectID": "index.html#itinerary",
+    "href": "index.html#itinerary",
+    "title": "Copepod Thermal Ecology Collaboration",
+    "section": "Itinerary",
+    "text": "Itinerary\nSunday July 20th: Mini-conference and prep work\nJuly 21-23: Sampling in Siecino\nJuly 25-28: Sampling in and around Szczecin\nJuly 29: Trip wrap-up and discussion"
   }
 ]

@@ -5,6 +5,8 @@ toc: true
 
 This page will compile a visual guide to the species we've collected, including photographs and notes on identification. [This](https://sasaki-lab.com/vermont_copes) is a work-in-progress example for the calanoid copepods of Lake Champlain - we could consider something similar.
 
+The information below is a guide to some of the features that might be useful for quickly identifying copepods in Pomeranian Lake district and other regions. This information was compiled by Maria Hołyńska.
+
 ## Cyclopoids
 
 ### Cyclops scutifer
@@ -13,7 +15,7 @@ This page will compile a visual guide to the species we've collected, including 
 
 0.9‒1.6 mm; spine formula 3.4.3.3; pediger 4 and 5 with lateral wings; P4 coxal seta usually swollen; P4 enp3, apical spines very different in length; caudal rami short (l/w: 4.0‒5.0) and pilose; insertion of caudal seta II \> 1/3 ramus length; P5. \[Sars 1914-1918\]
 
-### Cyclops vicinus 
+### Cyclops vicinus
 
 ![](images/ID/c_vicinus_drawing.png){fig-align="center"}
 
