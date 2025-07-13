@@ -2,7 +2,7 @@
 title: "Body Size Protocol"
 ---
 
-This protocol describes how to measure fecundity and body size for brooding copepods like *Leptodiaptomus*. While the fecundity measurement approach is taxon-specific, the body size measurement method will work for essentially all Calanoid copepods.
+EXAMPLE PROTOCOL - SPECIFIC DETAILS PENDING
 
 # Supplies
 
