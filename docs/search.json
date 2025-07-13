@@ -4,14 +4,14 @@
     "href": "index.html",
     "title": "Copepod Thermal Ecology Collaboration",
     "section": "",
-    "text": "This site is the central hub for our ongoing collaboration on the thermal ecology of freshwater copepods. It serves two purposes, to help organize within the group of collaborators and to showcase our work to external parties.\nThe code underlying this site as well as the data and code associated with the scientific aspects of this project are housed in this GitHub repository."
+    "text": "This site is the central hub for our ongoing collaboration on the thermal ecology of freshwater copepods. It serves two purposes, to help organize within the group of collaborators and to showcase our work to external parties.\nThe code underlying this site as well as the data and code associated with the scientific aspects of this project are housed in this GitHub repository. Other key information (forms, itineraries, etc.) can be found in this Google Drive."
   },
   {
     "objectID": "protocols.html",
     "href": "protocols.html",
     "title": "Protocols",
     "section": "",
-    "text": "This page describes the general workflow for the project. Protocols are included for certain steps in the workflow.\n\n\n\n\n\nflowchart TB\n  A[Environmental \\nParameters] --- C[Field Collections]\n  B[Plankton Tows] --- C[&lt;u&gt;Field Collections&lt;/u&gt;]\n      style C color:#4582EC;\n  \n  C --&gt; D[Lab]\n  \n  D --&gt; |Preserved| E[Dissections]\n  E --&gt; F[&lt;u&gt;Species IDs&lt;/u&gt;]\n       style F color:#4582EC;\n  E --&gt; G[Imaging]\n  F --&gt; H[&lt;u&gt;Genome Size&lt;/u&gt;]\n       style H color:#4582EC;\n  F --&gt; I[Samples archived \\nand distributed]\n  \n  D --&gt; |Preserved| J[Bulk Samples]\n  J -- Ethanol replaced ---&gt; I\n  \n  D -- Live ---&gt; K[&lt;u&gt;CTmax&lt;/u&gt;]\n       style K color:#4582EC;\n  K --&gt; L[&lt;u&gt;Body Size&lt;/u&gt;]\n       style L color:#4582EC;\n  L --&gt; |Preserved| M[&lt;u&gt;Species IDs&lt;/u&gt;]\n       style M color:#4582EC;\n  M --&gt; I\n\nclick C \"https://zoopecoevo.github.io/copepod_ctmax_collab/protocols/collection_protocol.html\"\nclick F \"https://zoopecoevo.github.io/copepod_ctmax_collab/copepod_guide.html\"\nclick M \"https://zoopecoevo.github.io/copepod_ctmax_collab/copepod_guide.html\"\nclick H \"https://zoopecoevo.github.io/copepod_ctmax_collab/protocols/genome_size_protocol.html\"\nclick K \"https://zoopecoevo.github.io/copepod_ctmax_collab/protocols/ctmax_protocol.html\"\nclick L \"https://zoopecoevo.github.io/copepod_ctmax_collab/protocols/body_size_protocol.html\""
+    "text": "This page describes the general workflow for the project. Protocols are included for certain steps in the workflow.\n\n\n\n\n\nflowchart TB\n  \n  C[&lt;u&gt;Field Collections&lt;/u&gt;]\n      style C color:#4582EC;\n  \n  C --&gt; D[Lab]\n  \n  D --&gt; |Preserved| E[Dissections]\n  E --&gt; F[&lt;u&gt;Species IDs&lt;/u&gt;]\n       style F color:#4582EC;\n  E --&gt; G[Imaging]\n  F --&gt; H[&lt;u&gt;Genome Size&lt;/u&gt;]\n       style H color:#4582EC;\n  F --&gt; I[Samples archived \\nand distributed]\n  \n  D --&gt; |Preserved| J[Bulk Samples]\n  J -- Ethanol replaced ---&gt; I\n  \n  D -- Live ---&gt; K[&lt;u&gt;CTmax&lt;/u&gt;]\n       style K color:#4582EC;\n  K --&gt; L[&lt;u&gt;Body Size&lt;/u&gt;]\n       style L color:#4582EC;\n  L --&gt; |Preserved| M[&lt;u&gt;Species IDs&lt;/u&gt;]\n       style M color:#4582EC;\n  M --&gt; I\n\nclick C \"https://zoopecoevo.github.io/copepod_ctmax_collab/protocols/collection_protocol.html\"\nclick F \"https://zoopecoevo.github.io/copepod_ctmax_collab/copepod_guide.html\"\nclick M \"https://zoopecoevo.github.io/copepod_ctmax_collab/copepod_guide.html\"\nclick H \"https://zoopecoevo.github.io/copepod_ctmax_collab/protocols/genome_size_protocol.html\"\nclick K \"https://zoopecoevo.github.io/copepod_ctmax_collab/protocols/ctmax_protocol.html\"\nclick L \"https://zoopecoevo.github.io/copepod_ctmax_collab/protocols/body_size_protocol.html\""
   },
   {
     "objectID": "about.html",
@@ -60,14 +60,14 @@
     "href": "about.html#team-members",
     "title": "About the Project",
     "section": "Team Members",
-    "text": "Team Members\nGroup photo & list of members and affiliations\nMember - Affiliation\nMember - Affiliation\nMember - Affiliation\nMember - Affiliation\nMember - Affiliation\nMember - Affiliation\nMember - Affiliation\nMember - Affiliation\nMember - Affiliation\nMember - Affiliation"
+    "text": "Team Members\nGroup photo & list of members and affiliations\nŁukasz Sługocki - University of Szczecin\nMaria Hołyńska - Polish Academy of Sciences\nGrace Wyngaard - James Madison University\nMatthew Sasaki - University of Massachusetts Lowell\nLarysa Samchyshyna - Affiliation\nDagmar Frisch - IGB Berlin\nKacper Nowakowski - University of Szczecin\nUrszula Mordacz - University of Szczecin\nRoman Lysenko - Taras Shevchenko National University of Kyiv\nLeonid Svetlichny - National Academy of Sciences of Ukraine"
   },
   {
     "objectID": "about.html#funding-acknowledgments",
     "href": "about.html#funding-acknowledgments",
     "title": "About the Project",
     "section": "Funding acknowledgments",
-    "text": "Funding acknowledgments"
+    "text": "Funding acknowledgments\nThis project is the result of generous support from XYZ."
   },
   {
     "objectID": "protocols/body_size_protocol.html",
@@ -96,5 +96,26 @@
     "title": "Collection Protocol",
     "section": "",
     "text": "Information on methods for collecting samples.\n\nRetrieve the collection kit from the copepod room.\n\nThis kit should contain the field notebook, the large plankton net, a cod end, a thermometer, and the insulated carrier (large black water bottle). Other supplies that may be useful are a couple 4 qt cubes with lids, the hand-held microscope, and a salinometer.\n\nOnce at the collection site, unfold the plankton net and before attaching the cod end, rinse the net by raising and lowering it out of the water several times. Attach the cod end - make sure it is firmly attached. Before starting the tow, fill the cod end by lowering the net into the water and then rapidly raising it. Use this sample to check the temperature and then add the contents of the cod end to the insulated carrier to bring it to the correct temperature. Record information about the date, time, collection site, and environmental conditions in the field notebook.\n\nTry to keep the carrier out of direct sunlight from this point onward.\n\nTo start the tow, reattach the cod end and then fill it as described above. Once the cod end is full (has sunk below the surface), start moving the net horizontally. The goal is to remove any air bubbles from the net so that the entire net is submerged. Move quickly enough to keep the net horizontal, but avoid moving so quickly that the mouth of the net breaks the surface.\n\n\n\n\n\nNote that the net is full horizontal, with the mouth and the cod end fully submerged\n\n\n\n\nDepending on the conditions at the site (how abundant the animals are) you may need to tow for different amounts of time. A good rule of thumb is to tow the net several lengths of the pier and then pull it up to check the density of animals. Be sure to rinse anything stuck on the sides of the net down into the cod end by raising and lowering it into the water several times. After pulling the net up, drain ~2/3 of the water from the cod end before unscrewing it from the net.\nCheck the contents of the cod end to 1) ensure there are copepods present and 2) to check the approximate density (few, some, many, etc.). Keep in mind the number needed for the experiment - CTmax assays, for example, will only need 10-50 animals. Transfer the contents of the cod end to the insulated carrier. Record your initial observations about the abundance in the field notebook.\nRepeat the tow procedure as needed to obtain enough animals.\nOnce finished, rinse the net (raising and lowering it out of the water several times without the cod end attached).\nReturn to lab. It’s important that you thoroughly rinse off the net in the sink before you return it to storage. Make sure the collection kit is ready for the next person to take it."
+  },
+  {
+    "objectID": "Manuscript/manuscript_name.html#statistical-analysis",
+    "href": "Manuscript/manuscript_name.html#statistical-analysis",
+    "title": "TITLE",
+    "section": "Statistical Analysis",
+    "text": "Statistical Analysis"
+  },
+  {
+    "objectID": "protocols/collection_protocol.html#plankton-sampling",
+    "href": "protocols/collection_protocol.html#plankton-sampling",
+    "title": "Collection Protocol",
+    "section": "Plankton Sampling",
+    "text": "Plankton Sampling"
+  },
+  {
+    "objectID": "protocols/collection_protocol.html#transport-to-lab",
+    "href": "protocols/collection_protocol.html#transport-to-lab",
+    "title": "Collection Protocol",
+    "section": "Transport to Lab",
+    "text": "Transport to Lab"
   }
 ]

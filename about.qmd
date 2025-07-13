@@ -4,30 +4,30 @@ title: "About the Project"
 
 This page summarizes how this group came about, the membership, and the mechanisms of support.
 
-## Team Members 
+## Team Members
 
 Group photo & list of members and affiliations
 
-Member - *Affiliation*
+Łukasz Sługocki - *University of Szczecin*
 
-Member - *Affiliation*
+Maria Hołyńska - *Polish Academy of Sciences*
 
-Member - *Affiliation*
+Grace Wyngaard - *James Madison University*
 
-Member - *Affiliation*
+Matthew Sasaki - *University of Massachusetts Lowell*
 
-Member - *Affiliation*
+Larysa Samchyshyna - *Affiliation*
 
-Member - *Affiliation*
+Dagmar Frisch - *IGB Berlin*
 
-Member - *Affiliation*
+Kacper Nowakowski - *University of Szczecin*
 
-Member - *Affiliation*
+Urszula Mordacz - *University of Szczecin*
 
-Member - *Affiliation*
+Roman Lysenko - *Taras Shevchenko National University of Kyiv*
 
-Member - *Affiliation*
-
-------------------------------------------------------------------------
+Leonid Svetlichny - *National Academy of Sciences of Ukraine*
 
 ## Funding acknowledgments
+
+This project is the result of generous support from XYZ.

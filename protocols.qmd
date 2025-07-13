@@ -11,8 +11,8 @@ This page describes the general workflow for the project. Protocols are included
 %%| theme: neutral
 
 flowchart TB
-  A[Environmental \nParameters] --- C[Field Collections]
-  B[Plankton Tows] --- C[<u>Field Collections</u>]
+  
+  C[<u>Field Collections</u>]
       style C color:#4582EC;
   
   C --> D[Lab]
