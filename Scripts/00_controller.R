@@ -19,6 +19,9 @@ if(process_data == T){
 ### Read in the PROCESSED data ###
 ##################################
 
+ctmax_data = read.csv(file = "Raw_data/ctmax_data.csv") %>% 
+  drop_na(ctmax)
+
 if(make_report == T){
   render(input = "Output/Reports/report.Rmd", #Input the path to your .Rmd file here
          #output_file = "report", #Name your file here if you want it to have a different name; leave off the .html, .md, etc. - it will add the correct one automatically

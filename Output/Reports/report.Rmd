@@ -82,3 +82,65 @@ theme_matt_facets = function(base_size = 18,
     )
 }
 ```
+
+```{r}
+ggplot(ctmax_data, aes(x = order, y = ctmax)) + 
+  geom_boxplot() + 
+  theme_matt()
+```
+
+```{r}
+ctmax_data %>% 
+  filter(genus != "") %>% 
+  mutate(genus = fct_reorder(genus, ctmax, .fun = mean)) %>% 
+ggplot(aes(x = genus, y = ctmax, fill = genus)) + 
+  geom_boxplot(outlier.colour = NA) + 
+  geom_point(position = position_jitter(width = 0.1, height = 0),
+             alpha = 0.5) + 
+  labs(x = "Genus", 
+       y = "CTmax (°C)") + 
+  theme_matt() + 
+  theme(legend.position = "none")
+```
+
+```{r}
+ggplot(ctmax_data, aes(x = habitat, y = ctmax)) + 
+  facet_wrap(site~.) + 
+  geom_boxplot() + 
+  theme_matt_facets()
+```
+
+```{r}
+
+hab_comp = ctmax_data %>% 
+  filter(genus != "") %>% 
+  mutate(habitat = fct_relevel(habitat, "littoral", "surface", "metalimnion"))
+
+ctmax_data %>% 
+  filter(genus != "") %>% 
+  group_by(genus, habitat) %>% 
+  summarise(mean_ctmax = mean(ctmax)) %>% 
+  ungroup() %>% 
+  mutate(habitat = fct_relevel(habitat, "littoral", "surface", "metalimnion")) %>% 
+ggplot(aes(x = habitat, y = mean_ctmax, colour = genus, group = genus)) +
+  geom_point(data = hab_comp, aes(x = habitat, y = ctmax),
+             alpha = 0.5) + 
+  geom_line(linewidth = 2)+ 
+  labs(x = "Habitat", 
+       y = "CTmax (°C)") + 
+  theme_matt() + 
+  theme(legend.position = "right")
+
+```
+
+```{r}
+ctmax_data %>% 
+  filter(genus %in% c("Eudiaptomus", "Heterocope", "Eurytemora", "Mesocyclops")) %>% 
+  ggplot(aes(x = collection_temp, y = ctmax)) + 
+  facet_wrap(genus~., scales = "free_y") + 
+  geom_point() + 
+  geom_smooth(method = "lm", se = F) + 
+  theme_matt_facets()
+```
+
+ 

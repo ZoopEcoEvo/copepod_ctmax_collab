@@ -1,0 +1,97 @@
+data_sheet,collection_date,site,habitat,experiment_date,collection_temp,exp_start,exp_end,ramp_start,water_bath,thermometer,notes,order,genus,tube,ctmax
+4,2025-07-21,Siecino,metalimnion,2025-07-22,10,NA,NA,15.5,4,3,Deep calanoid; no eggs,Calanoid,Eurytemora,1,28.1
+4,2025-07-21,Siecino,metalimnion,2025-07-22,10,NA,NA,15.5,4,3,Deep calanoid; no eggs; dead after assay,Calanoid,Eudiaptomus,2,34.8
+4,2025-07-21,Siecino,surface,2025-07-22,21,NA,NA,15.5,4,3,Shallow cyclo with eggs; dead after assay,Cyclopoid,,3,36.1
+4,2025-07-21,Siecino,metalimnion,2025-07-22,10,NA,NA,15.5,4,3,Deep cal no eggs,Calanoid,Eurytemora,4,29.1
+4,2025-07-21,Siecino,metalimnion,2025-07-22,10,NA,NA,15.5,4,3,Deep cal no eggs,Calanoid,Eurytemora,5,29.6
+4,2025-07-21,Siecino,metalimnion,2025-07-22,10,NA,NA,15.5,4,3,Deep cal with eggs,Calanoid,Eudiaptomus,6,33.8
+4,2025-07-21,Siecino,metalimnion,2025-07-22,10,NA,NA,15.5,4,3,Deep cal no eggs,Calanoid,Eurytemora,7,28.6
+4,2025-07-21,Siecino,metalimnion,2025-07-22,10,NA,NA,15.5,4,3,Deep cal no eggs,Calanoid,Eurytemora,8,28.9
+4,2025-07-21,Siecino,metalimnion,2025-07-22,10,NA,NA,15.5,4,3,Deep cal no eggs,Calanoid,Eurytemora,9,28.6
+4,2025-07-21,Siecino,surface,2025-07-22,21,NA,NA,15.5,4,3,Shallow cal no eggs,Calanoid,Eudiaptomus,10,32.8
+4,2025-07-21,Siecino,surface,2025-07-22,21,NA,NA,15.5,4,3,Shallow cal with eggs; missing preserved sample,Calanoid,Eurytemora,11,29.4
+4,2025-07-21,NA,NA,2025-07-22,NA,NA,NA,15.5,4,3,NA,NA,NA,12,NA
+5,2025-07-21,NA,NA,2025-07-22,21,NA,NA,20,4,3,NA,NA,NA,1,NA
+5,2025-07-21,Siecino,surface,2025-07-22,21,NA,NA,20,4,3,Eucyclops,Cyclopoid,Eucyclops,2,35.2
+5,2025-07-21,Siecino,surface,2025-07-22,21,NA,NA,20,4,3,Mesocyclops,Cyclopoid,Mesocyclops,3,36
+5,2025-07-21,Siecino,surface,2025-07-22,21,NA,NA,20,4,3,Calanoid,Calanoid,,4,29.6
+5,2025-07-21,Siecino,surface,2025-07-22,21,NA,NA,20,4,3,Thermocyclops,Cyclopoid,Thermocyclops,5,34.8
+5,2025-07-21,Siecino,surface,2025-07-22,21,NA,NA,20,4,3,Mesocyclops,Cyclopoid,Mesocyclops,6,26.3
+5,2025-07-21,Siecino,surface,2025-07-22,21,NA,NA,20,4,3,Mesocyclops,Cyclopoid,Mesocyclops,7,35.8
+5,2025-07-21,Siecino,surface,2025-07-22,21,NA,NA,20,4,3,Calanoid,Calanoid,,8,29.8
+5,2025-07-21,Siecino,surface,2025-07-22,21,NA,NA,20,4,3,Thermocyclops,Cyclopoid,Thermocyclops,9,33.9
+5,2025-07-21,Siecino,surface,2025-07-22,21,NA,NA,20,4,3,Mesocyclops,Cyclopoid,Mesocyclops,10,35.8
+5,2025-07-21,Siecino,surface,2025-07-22,21,NA,NA,20,4,3,Mesocyclops,Cyclopoid,Mesocyclops,11,36.2
+5,2025-07-21,Siecino,surface,2025-07-22,21,NA,NA,20,4,3,Calanoid,Calanoid,,12,29.9
+6,2025-07-22,Drawsko,littoral,2025-07-22,22,NA,NA,22,4,3,Large cyclopoid,Cyclopoid,,1,33.2
+6,2025-07-22,Drawsko,littoral,2025-07-22,22,NA,NA,22,4,3,Large cyclopoid,Cyclopoid,,2,32.8
+6,2025-07-22,Drawsko,littoral,2025-07-22,22,NA,NA,22,4,3,Cyclopoid with eggs,Cyclopoid,,3,37.3
+6,2025-07-22,Drawsko,littoral,2025-07-22,22,NA,NA,22,4,3,Cyclopoid with eggs,Cyclopoid,,4,38
+6,2025-07-22,Drawsko,littoral,2025-07-22,22,NA,NA,22,4,3,Cyclopoid no eggs,Cyclopoid,,5,33.1
+6,2025-07-22,Drawsko,littoral,2025-07-22,22,NA,NA,22,4,3,Cyclopoid with eggs,Cyclopoid,,6,38.1
+6,2025-07-22,Drawsko,littoral,2025-07-22,22,NA,NA,22,4,3,Cyclopoid with eggs,Cyclopoid,,7,38
+6,2025-07-22,Drawsko,littoral,2025-07-22,22,NA,NA,22,4,3,Cyclopoid with eggs,Cyclopoid,,8,38.6
+6,2025-07-22,Drawsko,littoral,2025-07-22,22,NA,NA,22,4,3,Large cyclopoid,Cyclopoid,,9,36.5
+6,2025-07-22,Drawsko,littoral,2025-07-22,22,NA,NA,22,4,3,Thermocyclops,Cyclopoid,Thermocyclops,10,39.1
+6,2025-07-22,NA,NA,2025-07-22,22,NA,NA,22,4,3,NA,NA,NA,11,NA
+6,2025-07-22,Drawsko,littoral,2025-07-22,22,NA,NA,22,4,3,Cyclopoid with eggs,Cyclopoid,,12,38.1
+7,2025-07-21,Siecino,surface,2025-07-22,21,NA,NA,21,3,6,Cyclopoid with eggs,Cyclopoid,,1,37.3
+7,2025-07-21,Siecino,surface,2025-07-22,21,NA,NA,21,3,6,Mesocyclops? ,Cyclopoid,Mesocyclops,2,37.3
+7,2025-07-21,NA,NA,2025-07-22,21,NA,NA,21,3,6,NA,NA,NA,3,NA
+7,2025-07-21,Siecino,surface,2025-07-22,21,NA,NA,21,3,6,Cyclopoid with eggs,Cyclopoid,,4,32.4
+7,2025-07-21,Siecino,surface,2025-07-22,21,NA,NA,21,3,6,Thermocyclops,Cyclopoid,Thermocyclops,5,35.8
+7,2025-07-21,Siecino,surface,2025-07-22,21,NA,NA,21,3,6,Thermocyclops; dead after assay; with parasites,Cyclopoid,Thermocyclops,6,36.9
+7,2025-07-21,Siecino,surface,2025-07-22,21,NA,NA,21,3,6,Thermocyclops,Cyclopoid,Thermocyclops,7,37.4
+7,2025-07-21,Siecino,surface,2025-07-22,21,NA,NA,21,3,6,Mesocyclops? ,Cyclopoid,Mesocyclops,8,37.2
+7,2025-07-21,Siecino,surface,2025-07-22,21,NA,NA,21,3,6,Calanoid (Eury),Calanoid,Eurytemora,9,30.9
+7,2025-07-21,Siecino,surface,2025-07-22,21,NA,NA,21,3,6,Calanoid (Eury),Calanoid,Eurytemora,10,29.1
+7,2025-07-21,Siecino,surface,2025-07-22,21,NA,NA,21,3,6,Cyclopoid; lost,Cyclopoid,,11,37.4
+7,2025-07-21,Siecino,surface,2025-07-22,21,NA,NA,21,3,6,Calanoid (diapt),Calanoid,Eudiaptomus,12,37.1
+9,2025-07-21,Siecino,metalimnion,2025-07-22,10,NA,NA,10,3,6,Drawsko - cyclopoid,Cyclopoid,,1,25.9
+9,2025-07-22,Drawsko,metalimnion,2025-07-22,10,NA,NA,10,3,6,Sicieno - calanoid,Calanoid,,2,34.6
+9,2025-07-21,Siecino,metalimnion,2025-07-22,10,NA,NA,10,3,6,Sicieno - eurytemora,Calanoid,Eurytemora,3,28.1
+9,NA,NA,NA,2025-07-22,10,NA,NA,10,3,6,NA,NA,NA,4,NA
+9,2025-07-21,Siecino,metalimnion,2025-07-22,10,NA,NA,10,3,6,Sicieno - eurytemora,Calanoid,Eurytemora,5,29.9
+9,2025-07-22,Drawsko,metalimnion,2025-07-22,10,NA,NA,10,3,6,Drawsko - cyclops,Cyclopoid,Cyclops,6,28.9
+9,2025-07-22,Drawsko,metalimnion,2025-07-22,10,NA,NA,10,3,6,Drawsko - cyclops,Cyclopoid,Cyclops,7,29.8
+9,2025-07-22,Drawsko,metalimnion,2025-07-22,10,NA,NA,10,3,6,Drawsko - calanoid,Calanoid,Eudiaptomus,8,32.1
+9,2025-07-22,Drawsko,metalimnion,2025-07-22,10,NA,NA,10,3,6,Drawsko - calanoid,Calanoid,Eudiaptomus,9,34.7
+9,2025-07-22,Drawsko,metalimnion,2025-07-22,10,NA,NA,10,3,6,Drawsko - cyclops,Cyclopoid,Cyclops,10,29.6
+9,2025-07-22,Drawsko,metalimnion,2025-07-22,10,NA,NA,10,3,6,Drawsko - calanoid,Calanoid,Eudiaptomus,11,34.7
+9,2025-07-21,Siecino,metalimnion,2025-07-22,10,NA,NA,10,3,6,Sicieno - cyclops,Cyclopoid,Cyclops,12,30
+11,2025-07-23,Insko,littoral,2025-07-23,21,NA,NA,21,4,3,mesocyclops?,Cyclopoid,Mesocyclops,1,35.9
+11,2025-07-23,Insko,littoral,2025-07-23,21,NA,NA,21,4,3,cyclopoid,Cyclopoid,,2,37.7
+11,2025-07-23,Insko,littoral,2025-07-23,21,NA,NA,21,4,3,cyclopoid,Cyclopoid,,3,36.2
+11,2025-07-23,Insko,littoral,2025-07-23,21,NA,NA,21,4,3,mesocyclops,Cyclopoid,Mesocyclops,4,37.3
+11,2025-07-23,Insko,littoral,2025-07-23,21,NA,NA,21,4,3,eucyclops?,Cyclopoid,Eucyclops,5,36.9
+11,2025-07-23,Insko,littoral,2025-07-23,21,NA,NA,21,4,3,megacyclops,Cyclopoid,Megacyclops,6,32.9
+11,2025-07-23,Insko,littoral,2025-07-23,21,NA,NA,21,4,3,mesocyclops,Cyclopoid, Mesocyclops,7,35.8
+11,2025-07-23,Insko,littoral,2025-07-23,21,NA,NA,21,4,3,macrocyclops,Cyclopoid,Macrocyclops,8,36.6
+11,2025-07-23,Insko,littoral,2025-07-23,21,NA,NA,21,4,3,eucyclops,Cyclopoid,Eucyclops,9,37.6
+11,2025-07-23,Insko,littoral,2025-07-23,21,NA,NA,21,4,3,eucyclops,Cyclopoid,Eucyclops,10,36.8
+11,2025-07-23,Insko,littoral,2025-07-23,21,NA,NA,21,4,3,eucyclops,Cyclopoid,Eucyclops,11,34.5
+11,2025-07-23,Insko,littoral,2025-07-23,21,NA,NA,21,4,3,NA,NA,NA,12,NA
+8,2025-07-23,Insko,surface,2025-07-23,21.6,19:30,NA,23.3,2,2,heterocop,Calanoid,Heterocope,1,32.9
+8,2025-07-23,Insko,surface,2025-07-23,21.6,19:30,NA,23.3,2,2,meso,Cyclopoid,Mesocyclops,2,35.8
+8,2025-07-23,Insko,surface,2025-07-23,21.6,19:30,NA,23.3,2,2,heterocope,Calanoid,Heterocope,3,33.3
+8,2025-07-23,Insko,surface,2025-07-23,21.6,19:30,NA,23.3,2,2,meso,Cyclopoid,Mesocyclops,4,35.5
+8,2025-07-23,Insko,surface,2025-07-23,21.6,19:30,NA,23.3,2,2,eudiapt,Calanoid,Eudiaptomus,5,34.6
+8,2025-07-23,Insko,surface,2025-07-23,21.6,19:30,NA,23.3,2,2,NA,NA,NA,6,NA
+8,2025-07-23,Insko,surface,2025-07-23,21.6,19:30,NA,23.3,2,2,eudiapt,Calanoid,Eudiaptomus,7,35.1
+8,2025-07-23,Insko,surface,2025-07-23,21.6,19:30,NA,23.3,2,2,calanoida,Calanoid,,8,33.8
+8,2025-07-23,Insko,surface,2025-07-23,21.6,19:30,NA,23.3,2,2,eudiapt,Calanoid,Eudiaptomus,9,34.6
+8,2025-07-23,Insko,surface,2025-07-23,21.6,19:30,NA,23.3,2,2,cyclopoid (only large); the bigger cyclopoid only preserved L.S.,Cyclopoid,,10,36.3
+8,2025-07-23,Insko,surface,2025-07-23,21.6,19:30,NA,23.3,2,2,eudiapt,Calanoid,Eudiaptomus,11,34.9
+8,2025-07-23,Insko,surface,2025-07-23,21.6,19:30,NA,23.3,2,2,eudiapt,Calanoid,Eudiaptomus,12,35.3
+10,2025-07-23,Insko,metalimnion,2025-07-23,10,20:17,NA,12,3,6,Calanoid with eggs,Calanoid,Eurytemora,1,26.8
+10,2025-07-23,Insko,metalimnion,2025-07-23,10,20:17,NA,12,3,6,Calanoid with eggs,Calanoid,Eurytemora,2,26.5
+10,2025-07-23,Insko,metalimnion,2025-07-23,10,20:17,NA,12,3,6,Calanoid,Calanoid,Eurytemora,3,26.1
+10,2025-07-23,Insko,metalimnion,2025-07-23,10,20:17,NA,12,3,6,Mesocyclops,Cyclopoid,Mesocyclops,4,35.7
+10,2025-07-23,Insko,metalimnion,2025-07-23,10,20:17,NA,12,3,6,NA,NA,NA,5,NA
+10,2025-07-23,Insko,metalimnion,2025-07-23,10,20:17,NA,12,3,6,Heterocope,Calanoid,Heterocope,6,32.2
+10,2025-07-23,Insko,metalimnion,2025-07-23,10,20:17,NA,12,3,6,Calanoid with eggs,Calanoid,Eudiaptomus,7,33.6
+10,2025-07-23,Insko,metalimnion,2025-07-23,10,20:17,NA,12,3,6,Calanoid,Calanoid,Eudiaptomus,8,33.6
+10,2025-07-23,Insko,metalimnion,2025-07-23,10,20:17,NA,12,3,6,Calanoid,Calanoid,Eudiaptomus,9,33.4
+10,2025-07-23,Insko,metalimnion,2025-07-23,10,20:17,NA,12,3,6,Cyclopoid? ,Cyclopoid,,10,29.2
+10,2025-07-23,Insko,metalimnion,2025-07-23,10,20:17,NA,12,3,6,Calanoid,Calanoid,Eurytemora,11,26.3
+10,2025-07-23,Insko,metalimnion,2025-07-23,10,20:17,NA,12,3,6,Calanoid,Calanoid,Eudiaptomus,12,34.1
