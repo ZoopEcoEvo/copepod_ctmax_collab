@@ -25,7 +25,7 @@
     "href": "data_summary.html",
     "title": "Data Summary",
     "section": "",
-    "text": "This page will summarize the data collected, including the distribution of sampling sites, the species collected, and some basic summaries of the data collected.\n\n\n\n\n\n\n\n\n\nPlaceholder data"
+    "text": "This page summarizes the data collected, including the distribution of sampling sites, the species collected, and some basic summaries of the data collected.\n\n\n\n\n\n\n\n\n\nCopepod collections were made from 3 sites from 2025-07-21 to 2025-07-23. A total of 88 CTmax measurements were made.\nIn general, cyclopoids had higher CTmax values than calanoid copepods.\n\n\n\n\n\n\n\n\n\nCTmax data is shown below for individuals were a genus was recorded (or could be speculated). Note, these CTmax values do not account for differences in collection temperature.\n\n\n\n\n\n\n\n\n\nBroken down by habitat type, there are clear differences between thermal limits in the littoral, surface waters, and metalimnion. Again, these comparisons do not account for differences in collection temperature.\n\n\n\n\n\n\n\n\n\nThese differences in thermal limits may be attributed to multiple factors, including variation in species composition and acclimation to the different environments. Shown below are CTmax values from the different habitats, grouped by genus, allowing us to infer the relative contribution of these different mechanisms. The increased thermal limits in the littoral community are largely due to changes in community composition (genera/species in the littoral have higher CTmax values than those in the surface waters). For several genera (Eudiaptomus and Eurytemora, for example), the change in CTmax between the surface wates and metalimnion may be driven by acclimation - individuals from the metalimnion were collected from water around 10°C cooler than the surface waters."
   },
   {
     "objectID": "copepod_guide.html",
@@ -39,7 +39,7 @@
     "href": "log.html",
     "title": "Travel Log",
     "section": "",
-    "text": "This page will compile daily summaries of the group activities (pictures of the sampling sites, description of sampling activities, etc.).\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nEXAMPLE POST\n\n\n\n\n\nDESCRIPTION OF SAMPLING SITE, COLLECTIONS, ETC.\n\n\n\n\n\nJul 20, 2025\n\n\n\n\n\n\nNo matching items"
+    "text": "This page will compile daily summaries of the group activities (pictures of the sampling sites, description of sampling activities, etc.).\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nLake Sicieno\n\n\n\n\n\n\n\n\n\n\n\nJul 21, 2025\n\n\n\n\n\n\n\n\n\n\n\n\nDrawsko Lake\n\n\n\n\n\n\n\n\n\n\n\nJul 22, 2025\n\n\n\n\n\n\n\n\n\n\n\n\nLake Insko\n\n\n\n\n\n\n\n\n\n\n\nJul 23, 2025\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "log_entries/test.html",

@@ -1,0 +1,7 @@
+---
+title: "Drawsko Lake"
+description: ""
+date: "07/22/2025"
+draft: false
+image: "/images/Drawsko_1.jpg"
+---

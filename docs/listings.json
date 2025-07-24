@@ -2,7 +2,9 @@
   {
     "listing": "/log.html",
     "items": [
-      "/log_entries/test.html"
+      "/log_entries/2025_07_21.html",
+      "/log_entries/2025_07_22.html",
+      "/log_entries/2025_07_23.html"
     ]
   }
 ]

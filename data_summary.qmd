@@ -2,37 +2,185 @@
 title: "Data Summary"
 ---
 
-This page will summarize the data collected, including the distribution of sampling sites, the species collected, and some basic summaries of the data collected.
+```{r setup, echo = F}
+
+knitr::opts_chunk$set(
+  echo = F,
+  fig.align = "center",
+  message = FALSE,
+  warning = FALSE,
+  collapse = T
+)
+
+```
+
+
+This page summarizes the data collected, including the distribution of sampling sites, the species collected, and some basic summaries of the data collected.
 
 ```{r message=F, warning=F, echo = F}
 library(tidyverse)
-
 library(rnaturalearth)
+
+ctmax_data = read.csv(file = "Raw_data/ctmax_data.csv") %>% 
+  drop_na(ctmax)
+
+
+theme_matt = function(base_size = 18,
+                      dark_text = "grey20"){
+  mid_text <-  monochromeR::generate_palette(dark_text, "go_lighter", n_colours = 5)[2]
+  light_text <-  monochromeR::generate_palette(dark_text, "go_lighter", n_colours = 5)[3]
+  
+  ggpubr::theme_pubr(base_family="sans") %+replace% 
+    theme(
+      panel.background  = element_rect(fill="transparent", colour=NA), 
+      plot.background = element_rect(fill="transparent", colour=NA), 
+      legend.background = element_rect(fill="transparent", colour=NA),
+      legend.key = element_rect(fill="transparent", colour=NA),
+      text = element_text(colour = mid_text, lineheight = 1.1),
+      title = element_text(size = base_size * 1.5,
+                           colour = dark_text),
+      axis.text = element_text(size = base_size,
+                               colour = mid_text),
+      axis.title.x = element_text(size = base_size * 1.2,
+                                  margin = unit(c(3, 0, 0, 0), "mm")),
+      axis.title.y = element_text(size = base_size * 1.2,
+                                  margin = unit(c(0, 5, 0, 0), "mm"), 
+                                  angle = 90),
+      legend.text = element_text(size=base_size * 0.9),
+      legend.title = element_text(size = base_size * 0.9, 
+                                  face = "bold"),
+      plot.margin = margin(0.25, 0.25, 0.25, 0.25,"cm")
+    )
+}
+
+theme_matt_facets = function(base_size = 18,
+                             dark_text = "grey20"){
+  mid_text <-  monochromeR::generate_palette(dark_text, "go_lighter", n_colours = 5)[2]
+  light_text <-  monochromeR::generate_palette(dark_text, "go_lighter", n_colours = 5)[3]
+  
+  theme_bw(base_family="sans") %+replace% 
+    theme(
+      panel.grid = element_blank(),
+      panel.background  = element_rect(fill="transparent", colour=NA), 
+      plot.background = element_rect(fill="transparent", colour=NA), 
+      legend.background = element_rect(fill="transparent", colour=NA),
+      legend.key = element_rect(fill="transparent", colour=NA),
+      text = element_text(colour = mid_text, lineheight = 1.1),
+      strip.text.x = element_text(size = base_size),
+      title = element_text(size = base_size * 1.5,
+                           colour = dark_text),
+      axis.text = element_text(size = base_size,
+                               colour = mid_text),
+      axis.title.x = element_text(size = base_size * 1.2,
+                                  margin = unit(c(3, 0, 0, 0), "mm")),
+      axis.title.y = element_text(size = base_size * 1.2,
+                                  margin = unit(c(0, 5, 0, 0), "mm"), 
+                                  angle = 90),
+      legend.text = element_text(size=base_size * 0.9),
+      legend.title = element_text(size = base_size * 0.9, 
+                                  face = "bold"),
+      plot.margin = margin(0.25, 0.25, 0.25, 0.25,"cm")
+    )
+}
+
+```
+
+```{r message=F, warning=F, echo = F}
+
+sites = data.frame(
+  "site" = c("Sicieno", "Drawsko", "Insko"), 
+  "lat" = c(53.612418, 53.596071, 53.446976), 
+  "long" = c(16.024032, 16.178750, 15.557093)
+)
 
 world <- ne_countries(scale = "medium", returnclass = "sf")
 Europe <- world[which(world$continent == "Europe"),]
 ggplot(Europe) +
   geom_sf() + 
-  coord_sf(xlim = c(5,30), ylim = c(45,60), expand = FALSE) + 
+  geom_point(data = sites, aes(x = long, y = lat)) + 
+  coord_sf(xlim = c(12,20), ylim = c(52,55), expand = FALSE) + 
   theme_bw() + 
   theme(panel.grid = element_blank())
 
 ```
 
-Placeholder data
+Copepod collections were made from `r length(unique(sites$site))` sites from `r paste0(range(ctmax_data$collection_date), collapse = " to ")`. A total of `r length(ctmax_data$ctmax)` CTmax measurements were made.
 
-```{r message=F, warning=F, echo = F}
 
-tibble("coll_temp" = sample(x = c(10:25), size = 10, replace = T)) %>% 
-  group_by(row_number()) %>%  
-  mutate(ctmax = (coll_temp * 0.2 + 20) + rnorm(n = 1, mean = 0, sd = 0.8)) %>% 
-  ggplot(aes(x = coll_temp, y = ctmax)) + 
-  geom_point(size = 3) + 
-  labs(x = "Temperature (°C)",
+In general, cyclopoids had higher CTmax values than calanoid copepods. 
+
+```{r}
+ggplot(ctmax_data, aes(x = order, y = ctmax)) + 
+  geom_boxplot() + 
+    labs(x = "Order", 
        y = "CTmax (°C)") + 
-  theme_bw() + 
-  theme(panel.grid = element_blank(),
-        axis.text = element_text(size = 16),
-        axis.title = element_text(size = 18))
+  theme_matt()
+```
 
+CTmax data is shown below for individuals were a genus was recorded (or could be speculated). Note, these CTmax values do not account for differences in collection temperature. 
+
+```{r fig.width=9, fig.height=9}
+ctmax_data %>% 
+  filter(genus != "") %>% 
+  mutate(genus = fct_reorder(genus, ctmax, .fun = mean)) %>% 
+ggplot(aes(x = genus, y = ctmax, fill = genus)) + 
+  geom_boxplot(outlier.colour = NA) + 
+  geom_point(position = position_jitter(width = 0.1, height = 0),
+             alpha = 0.5) + 
+  labs(x = "Genus", 
+       y = "CTmax (°C)") + 
+  theme_matt() + 
+  theme(legend.position = "none", 
+        axis.text.x = element_text(angle = 300, hjust = 0, vjust = 0.5))
+```
+
+Broken down by habitat type, there are clear differences between thermal limits in the littoral, surface waters, and metalimnion. Again, these comparisons do not account for differences in collection temperature. 
+
+```{r}
+ctmax_data %>% 
+  mutate(habitat = fct_relevel(habitat, "littoral", "surface", "metalimnion")) %>% 
+ggplot(aes(x = habitat, y = ctmax)) + 
+  facet_wrap(site~.) + 
+  geom_boxplot() +  
+  labs(x = "Habitat", 
+       y = "CTmax (°C)") + 
+  theme_matt_facets() + 
+  theme(axis.text.x = element_text(angle = 300, hjust = 0, vjust = 0.5))
+```
+
+These differences in thermal limits may be attributed to multiple factors, including variation in species composition and acclimation to the different environments. Shown below are CTmax values from the different habitats, grouped by genus, allowing us to infer the relative contribution of these different mechanisms. The increased thermal limits in the littoral community are largely due to changes in community composition (genera/species in the littoral have higher CTmax values than those in the surface waters). For several genera (Eudiaptomus and Eurytemora, for example), the change in CTmax between the surface wates and metalimnion may be driven by acclimation - individuals from the metalimnion were collected from water around 10°C cooler than the surface waters. 
+
+```{r}
+
+hab_comp = ctmax_data %>% 
+  filter(genus != "") %>% 
+  mutate(habitat = fct_relevel(habitat, "littoral", "surface", "metalimnion"),
+         genus = fct_reorder(genus, ctmax, .fun = mean, .desc = T))
+
+ctmax_data %>% 
+  filter(genus != "") %>% 
+  group_by(genus, habitat) %>% 
+  summarise(mean_ctmax = mean(ctmax)) %>% 
+  ungroup() %>% 
+  mutate(habitat = fct_relevel(habitat, "littoral", "surface", "metalimnion")) %>% 
+ggplot(aes(x = habitat, y = mean_ctmax, colour = genus, group = genus)) +
+  geom_point(data = hab_comp, aes(x = habitat, y = ctmax),
+             alpha = 0.5) + 
+  geom_line(linewidth = 2)+ 
+  labs(x = "Habitat", 
+       y = "CTmax (°C)") + 
+  theme_matt() + 
+  theme(legend.position = "right") + 
+  theme(axis.text.x = element_text(angle = 300, hjust = 0, vjust = 0.5))
+
+```
+
+```{r, include=F}
+ctmax_data %>% 
+  filter(genus %in% c("Eudiaptomus", "Heterocope", "Eurytemora", "Mesocyclops")) %>% 
+  ggplot(aes(x = collection_temp, y = ctmax)) + 
+  facet_wrap(genus~., scales = "free_y") + 
+  geom_point() + 
+  geom_smooth(method = "lm", se = F) + 
+  theme_matt_facets()
 ```

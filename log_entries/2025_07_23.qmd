@@ -1,0 +1,7 @@
+---
+title: "Lake Insko"
+description: ""
+date: "07/23/2025"
+draft: false
+image: "/images/Insko_1.jpeg"
+---
