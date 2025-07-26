@@ -182,6 +182,8 @@ ctmax_data %>%
   theme_matt_facets()
 ```
 
+We examined the data using a mixed effects model, where CTmax is modeled as a function of collection temperature, genus, and habitat type (with no interactions). Site, tube number (as a proxy for the position within the water bath), and the water bath ID were included as random effects. An ANOVA indicates strong effects of all factors.
+
 ```{r}
 
 model_data = ctmax_data %>% 
@@ -192,7 +194,13 @@ ctmax.model = lme4::lmer(data = model_data,
 
 car::Anova(ctmax.model) %>% knitr::kable()
 
-genus_effects = emmeans::emmeans(ctmax.model, specs = "genus") %>% data.frame() %>% 
+```
+
+Using this model, we can extract the marginal mean effects for each genus (i.e. what is the expected CTmax for each genus, controlling for other factors like collection temperature). Here we show the expected CTmax for each genus at a collection temperature of 20°C.
+
+```{r}
+
+genus_effects = emmeans::emmeans(ctmax.model, specs = "genus", at = list(collection_temp = 20)) %>% data.frame() %>% 
   mutate(genus = fct_reorder(genus, emmean, .fun = mean))
 
 

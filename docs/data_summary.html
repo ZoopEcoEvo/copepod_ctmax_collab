@@ -195,6 +195,7 @@ ul.task-list li input[type="checkbox"] {
 </div>
 </div>
 </div>
+<p>We examined the data using a mixed effects model, where CTmax is modeled as a function of collection temperature, genus, and habitat type (with no interactions). Site, tube number (as a proxy for the position within the water bath), and the water bath ID were included as random effects. An ANOVA indicates strong effects of all factors.</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <table class="table table-sm table-striped small">
@@ -228,10 +229,13 @@ ul.task-list li input[type="checkbox"] {
 </tbody>
 </table>
 </div>
+</div>
+<p>Using this model, we can extract the marginal mean effects for each genus (i.e.&nbsp;what is the expected CTmax for each genus, controlling for other factors like collection temperature). Here we show the expected CTmax for each genus at a collection temperature of 20°C.</p>
+<div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="data_summary_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
+<p><img src="data_summary_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
 </figure>
 </div>
 </div>
