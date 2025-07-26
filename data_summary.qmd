@@ -14,7 +14,6 @@ knitr::opts_chunk$set(
 
 ```
 
-
 This page summarizes the data collected, including the distribution of sampling sites, the species collected, and some basic summaries of the data collected.
 
 ```{r message=F, warning=F, echo = F}
@@ -88,9 +87,9 @@ theme_matt_facets = function(base_size = 18,
 ```{r message=F, warning=F, echo = F}
 
 sites = data.frame(
-  "site" = c("Sicieno", "Drawsko", "Insko"), 
-  "lat" = c(53.612418, 53.596071, 53.446976), 
-  "long" = c(16.024032, 16.178750, 15.557093)
+  "site" = c("Sicieno", "Drawsko", "Insko", "Glebokie", "Odra"), 
+  "lat" = c(53.612418, 53.596071, 53.446976, 53.4726721, 53.4287614), 
+  "long" = c(16.024032, 16.178750, 15.557093, 14.4835817, 14.5743674)
 )
 
 world <- ne_countries(scale = "medium", returnclass = "sf")
@@ -104,10 +103,9 @@ ggplot(Europe) +
 
 ```
 
-Copepod collections were made from `r length(unique(sites$site))` sites from `r paste0(range(ctmax_data$collection_date), collapse = " to ")`. A total of `r length(ctmax_data$ctmax)` CTmax measurements were made.
+Copepod collections were made from `r length(unique(sites$site))` sites from `r paste0(range(ctmax_data$collection_date), collapse = " to ")`. A total of `r length(ctmax_data$ctmax)` CTmax measurements were made, ranging from `r paste0(range(ctmax_data$ctmax), collapse = " to ")`°C.
 
-
-In general, cyclopoids had higher CTmax values than calanoid copepods. 
+In general, cyclopoids had higher CTmax values than calanoid copepods.
 
 ```{r}
 ggplot(ctmax_data, aes(x = order, y = ctmax)) + 
@@ -117,7 +115,7 @@ ggplot(ctmax_data, aes(x = order, y = ctmax)) +
   theme_matt()
 ```
 
-CTmax data is shown below for individuals were a genus was recorded (or could be speculated). Note, these CTmax values do not account for differences in collection temperature. 
+CTmax data is shown below for individuals were a genus was recorded (or could be speculated). Note, these CTmax values do not account for differences in collection temperature.
 
 ```{r fig.width=9, fig.height=9}
 ctmax_data %>% 
@@ -134,7 +132,7 @@ ggplot(aes(x = genus, y = ctmax, fill = genus)) +
         axis.text.x = element_text(angle = 300, hjust = 0, vjust = 0.5))
 ```
 
-Broken down by habitat type, there are clear differences between thermal limits in the littoral, surface waters, and metalimnion. Again, these comparisons do not account for differences in collection temperature. 
+Broken down by habitat type, there are clear differences between thermal limits in the littoral, surface waters, and metalimnion. Again, these comparisons do not account for differences in collection temperature.
 
 ```{r}
 ctmax_data %>% 
@@ -148,7 +146,7 @@ ggplot(aes(x = habitat, y = ctmax)) +
   theme(axis.text.x = element_text(angle = 300, hjust = 0, vjust = 0.5))
 ```
 
-These differences in thermal limits may be attributed to multiple factors, including variation in species composition and acclimation to the different environments. Shown below are CTmax values from the different habitats, grouped by genus, allowing us to infer the relative contribution of these different mechanisms. The increased thermal limits in the littoral community are largely due to changes in community composition (genera/species in the littoral have higher CTmax values than those in the surface waters). For several genera (Eudiaptomus and Eurytemora, for example), the change in CTmax between the surface wates and metalimnion may be driven by acclimation - individuals from the metalimnion were collected from water around 10°C cooler than the surface waters. 
+These differences in thermal limits may be attributed to multiple factors, including variation in species composition and acclimation to the different environments. Shown below are CTmax values from the different habitats, grouped by genus, allowing us to infer the relative contribution of these different mechanisms. The increased thermal limits in the littoral community are largely due to changes in community composition (genera/species in the littoral have higher CTmax values than those in the surface waters). For several genera (Eudiaptomus and Eurytemora, for example), the change in CTmax between the surface wates and metalimnion may be driven by acclimation - individuals from the metalimnion were collected from water around 10°C cooler than the surface waters.
 
 ```{r}
 
@@ -177,10 +175,35 @@ ggplot(aes(x = habitat, y = mean_ctmax, colour = genus, group = genus)) +
 
 ```{r, include=F}
 ctmax_data %>% 
-  filter(genus %in% c("Eudiaptomus", "Heterocope", "Eurytemora", "Mesocyclops")) %>% 
   ggplot(aes(x = collection_temp, y = ctmax)) + 
   facet_wrap(genus~., scales = "free_y") + 
   geom_point() + 
   geom_smooth(method = "lm", se = F) + 
   theme_matt_facets()
+```
+
+```{r}
+
+model_data = ctmax_data %>% 
+  filter(genus != "")
+
+ctmax.model = lme4::lmer(data = model_data, 
+                         ctmax ~ collection_temp + genus + habitat + (1|site) + (1|tube) + (1|water_bath)) 
+
+car::Anova(ctmax.model) %>% knitr::kable()
+
+genus_effects = emmeans::emmeans(ctmax.model, specs = "genus") %>% data.frame() %>% 
+  mutate(genus = fct_reorder(genus, emmean, .fun = mean))
+
+
+ggplot(genus_effects, aes(x = genus, y = emmean)) + 
+  geom_errorbar(aes(ymin = emmean - SE, ymax = emmean + SE),
+                width = 0.4) + 
+  geom_point(size = 3) + 
+  labs(x = "Genus", 
+       y = "CTmax (°C)") + 
+  theme_matt() + 
+  theme(legend.position = "none", 
+        axis.text.x = element_text(angle = 300, hjust = 0, vjust = 0.5))
+
 ```
