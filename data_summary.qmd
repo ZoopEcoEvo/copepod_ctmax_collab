@@ -87,9 +87,9 @@ theme_matt_facets = function(base_size = 18,
 ```{r message=F, warning=F, echo = F}
 
 sites = data.frame(
-  "site" = c("Sicieno", "Drawsko", "Insko", "Glebokie", "Odra"), 
-  "lat" = c(53.612418, 53.596071, 53.446976, 53.4726721, 53.4287614), 
-  "long" = c(16.024032, 16.178750, 15.557093, 14.4835817, 14.5743674)
+  "site" = c("Sicieno", "Drawsko", "Insko", "Glebokie", "Odra", "Obok Lomota"), 
+  "lat" = c(53.612418, 53.596071, 53.446976, 53.4726721, 53.4287614, 53.4824602), 
+  "long" = c(16.024032, 16.178750, 15.557093, 14.4835817, 14.5743674, 14.5084380)
 )
 
 world <- ne_countries(scale = "medium", returnclass = "sf")
@@ -115,7 +115,7 @@ ggplot(ctmax_data, aes(x = order, y = ctmax)) +
   theme_matt()
 ```
 
-CTmax data is shown below for individuals were a genus was recorded (or could be speculated). Note, these CTmax values do not account for differences in collection temperature.
+CTmax data is shown below for individuals were a genus was recorded (or could be speculated). Note, these CTmax values do not account for differences in collection temperature, and that are several genera for which multiple species were likely sampled (e.g. *Eurytemora* and *Acanthocyclops*).
 
 ```{r fig.width=9, fig.height=9}
 ctmax_data %>% 
@@ -134,7 +134,7 @@ ggplot(aes(x = genus, y = ctmax, fill = genus)) +
 
 Broken down by habitat type, there are clear differences between thermal limits in the littoral, surface waters, and metalimnion. Again, these comparisons do not account for differences in collection temperature.
 
-```{r}
+```{r fig.width=8, fig.height=6}
 ctmax_data %>% 
   mutate(habitat = fct_relevel(habitat, "littoral", "surface", "metalimnion")) %>% 
 ggplot(aes(x = habitat, y = ctmax)) + 
@@ -148,7 +148,7 @@ ggplot(aes(x = habitat, y = ctmax)) +
 
 These differences in thermal limits may be attributed to multiple factors, including variation in species composition and acclimation to the different environments. Shown below are CTmax values from the different habitats, grouped by genus, allowing us to infer the relative contribution of these different mechanisms. The increased thermal limits in the littoral community are largely due to changes in community composition (genera/species in the littoral have higher CTmax values than those in the surface waters). For several genera (Eudiaptomus and Eurytemora, for example), the change in CTmax between the surface wates and metalimnion may be driven by acclimation - individuals from the metalimnion were collected from water around 10°C cooler than the surface waters.
 
-```{r}
+```{r fig.width=9, fig.height=8.5}
 
 hab_comp = ctmax_data %>% 
   filter(genus != "") %>% 
@@ -162,14 +162,16 @@ ctmax_data %>%
   ungroup() %>% 
   mutate(habitat = fct_relevel(habitat, "littoral", "surface", "metalimnion")) %>% 
 ggplot(aes(x = habitat, y = mean_ctmax, colour = genus, group = genus)) +
+  facet_wrap(genus~.) + 
   geom_point(data = hab_comp, aes(x = habitat, y = ctmax),
              alpha = 0.5) + 
   geom_line(linewidth = 2)+ 
   labs(x = "Habitat", 
        y = "CTmax (°C)") + 
-  theme_matt() + 
+  theme_matt_facets() + 
   theme(legend.position = "right") + 
-  theme(axis.text.x = element_text(angle = 300, hjust = 0, vjust = 0.5))
+  theme(axis.text.x = element_text(angle = 300, hjust = 0, vjust = 0.5),
+        legend.position = "none")
 
 ```
 
