@@ -2,6 +2,8 @@
 title: "Data Summary"
 ---
 
+# Ecophysiological and biogeographic predictors of CTmax in Polish copepods
+
 ```{r setup, echo = F}
 
 knitr::opts_chunk$set(
@@ -84,6 +86,8 @@ theme_matt_facets = function(base_size = 18,
 
 ```
 
+## Collection Details
+
 ```{r message=F, warning=F, echo = F}
 
 sites = data.frame(
@@ -105,6 +109,21 @@ ggplot(Europe) +
 
 Copepod collections were made from `r length(unique(sites$site))` sites from `r paste0(range(ctmax_data$collection_date), collapse = " to ")`. A total of `r length(ctmax_data$ctmax)` CTmax measurements were made, ranging from `r paste0(range(ctmax_data$ctmax), collapse = " to ")`°C.
 
+The distribution of CTmax measurements from each site and habitat type is shown below.
+
+```{r}
+ctmax_data %>% 
+  group_by(site, collection_date, habitat) %>% 
+  count() %>% 
+  pivot_wider(names_from = habitat, values_from = n, values_fill = 0) %>% 
+  mutate("total" = sum(littoral, metalimnion, surface)) %>% 
+  select(site, collection_date, littoral, surface, metalimnion, total) %>% 
+  arrange(collection_date) %>% 
+  knitr::kable()
+```
+
+## Taxonomic variation in CTmax
+
 In general, cyclopoids had higher CTmax values than calanoid copepods.
 
 ```{r}
@@ -115,7 +134,7 @@ ggplot(ctmax_data, aes(x = order, y = ctmax)) +
   theme_matt()
 ```
 
-CTmax data is shown below for individuals were a genus was recorded (or could be speculated). Note, these CTmax values do not account for differences in collection temperature, and that are several genera for which multiple species were likely sampled (e.g. *Eurytemora* and *Acanthocyclops*).
+CTmax data is shown below for individuals for which a genus was recorded (or could be speculated). Note, these CTmax values do not account for differences in collection temperature, and that there are several genera for which multiple species were likely sampled (e.g. *Eurytemora* and *Acanthocyclops*).
 
 ```{r fig.width=9, fig.height=9}
 ctmax_data %>% 
@@ -132,7 +151,9 @@ ggplot(aes(x = genus, y = ctmax, fill = genus)) +
         axis.text.x = element_text(angle = 300, hjust = 0, vjust = 0.5))
 ```
 
-Broken down by habitat type, there are clear differences between thermal limits in the littoral, surface waters, and metalimnion. Again, these comparisons do not account for differences in collection temperature.
+## Other variation in CTmax
+
+Broken down by habitat type, there are clear differences between thermal limits in the littoral, surface waters, and metalimnion. Again, these comparisons do not account for differences in collection temperature, but highlight intra-lake spatial variation in thermal limits that may be important to account for.
 
 ```{r fig.width=8, fig.height=6}
 ctmax_data %>% 
@@ -184,9 +205,11 @@ ctmax_data %>%
   theme_matt_facets()
 ```
 
-We examined the data using a mixed effects model, where CTmax is modeled as a function of collection temperature, genus, and habitat type (with no interactions). Site, tube number (as a proxy for the position within the water bath), and the water bath ID were included as random effects. An ANOVA indicates strong effects of all factors.
+## Statistical modelling
 
-```{r}
+We examined the data using a mixed effects model, where CTmax is modeled as a function of collection temperature, genus, and habitat type (with no interactions). Site, tube number (as a proxy for the position within the water bath), and the water bath ID were included as random effects. This model performs fairly well, although there is high variance inflation for both collection temperature and habitat type.
+
+```{r fig.height=11, fig.width=9}
 
 model_data = ctmax_data %>% 
   filter(genus != "")
@@ -194,11 +217,19 @@ model_data = ctmax_data %>%
 ctmax.model = lme4::lmer(data = model_data, 
                          ctmax ~ collection_temp + genus + habitat + (1|site) + (1|tube) + (1|water_bath)) 
 
+performance::check_model(ctmax.model)
+
+```
+
+An ANOVA indicates strong effects of genus, but no effect of collection temperature or habitat type. This analysis will be more powerful when genera have been disaggregated to the species level.
+
+```{r}
+
 car::Anova(ctmax.model) %>% knitr::kable()
 
 ```
 
-Using this model, we can extract the marginal mean effects for each genus (i.e. what is the expected CTmax for each genus, controlling for other factors like collection temperature). Here we show the expected CTmax for each genus at a collection temperature of 20°C.
+Using this model, we can extract the marginal mean effects for each genus (i.e. what is the expected CTmax for each genus, controlling for other factors like collection temperature). Here we show the expected CTmax for each genus at a collection temperature of 20°C. Again, we will plan on using a similar analysis to examine variation in CTmax across species.
 
 ```{r}
 
