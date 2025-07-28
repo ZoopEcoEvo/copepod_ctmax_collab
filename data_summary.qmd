@@ -91,9 +91,9 @@ theme_matt_facets = function(base_size = 18,
 ```{r message=F, warning=F, echo = F}
 
 sites = data.frame(
-  "site" = c("Sicieno", "Drawsko", "Insko", "Glebokie", "Odra", "Obok Lomota"), 
-  "lat" = c(53.612418, 53.596071, 53.446976, 53.4726721, 53.4287614, 53.4824602), 
-  "long" = c(16.024032, 16.178750, 15.557093, 14.4835817, 14.5743674, 14.5084380)
+  "site" = c("Sicieno", "Drawsko", "Insko", "Glebokie", "Odra", "Obok Lomota", "Przeclaw"), 
+  "lat" = c(53.612418, 53.596071, 53.446976, 53.4726721, 53.4287614, 53.4824602, 53.3720269), 
+  "long" = c(16.024032, 16.178750, 15.557093, 14.4835817, 14.5743674, 14.5084380, 14.4465705)
 )
 
 world <- ne_countries(scale = "medium", returnclass = "sf")
@@ -123,6 +123,8 @@ ctmax_data %>%
 ```
 
 ## Taxonomic variation in CTmax
+
+We made `r length(which(ctmax_data$order == "Cyclopoid"))` measurements for Cyclopoids and `r length(which(ctmax_data$order == "Calanoid"))` measurements for Calanoids.
 
 In general, cyclopoids had higher CTmax values than calanoid copepods.
 
@@ -155,9 +157,10 @@ ggplot(aes(x = genus, y = ctmax, fill = genus)) +
 
 Broken down by habitat type, there are clear differences between thermal limits in the littoral, surface waters, and metalimnion. Again, these comparisons do not account for differences in collection temperature, but highlight intra-lake spatial variation in thermal limits that may be important to account for.
 
-```{r fig.width=8, fig.height=6}
+```{r fig.width=8, fig.height=10}
 ctmax_data %>% 
-  mutate(habitat = fct_relevel(habitat, "littoral", "surface", "metalimnion")) %>% 
+  mutate(habitat = fct_relevel(habitat, "littoral", "surface", "metalimnion"),
+         site = fct_reorder(site, collection_date, .fun = min)) %>% 
 ggplot(aes(x = habitat, y = ctmax)) + 
   facet_wrap(site~.) + 
   geom_boxplot() +  
@@ -199,7 +202,7 @@ ggplot(aes(x = habitat, y = mean_ctmax, colour = genus, group = genus)) +
 ```{r, include=F}
 ctmax_data %>% 
   ggplot(aes(x = collection_temp, y = ctmax)) + 
-  facet_wrap(genus~., scales = "free_y") + 
+  facet_wrap(genus~.) + 
   geom_point() + 
   geom_smooth(method = "lm", se = F) + 
   theme_matt_facets()

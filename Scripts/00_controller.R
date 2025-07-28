@@ -22,6 +22,22 @@ if(process_data == T){
 ctmax_data = read.csv(file = "Raw_data/ctmax_data.csv") %>% 
   drop_na(ctmax)
 
+read.csv(file = "Raw_data/ctmax_data.csv") %>%  
+  filter(order != "<NA>") %>%  
+  mutate("sheet_char" = if_else(data_sheet <10,
+                                as.character(paste0(0, data_sheet)),
+                                as.character(data_sheet)),
+         "tube_char" = if_else(tube <10,
+                                as.character(paste0(0, tube)),
+                                as.character(tube)), 
+         "code" = paste0(sheet_char, tube_char)) %>% 
+  select(code, order, site) %>% 
+  filter(order == "Cyclopoid") %>% 
+  mutate("species" = "") %>% 
+  select(-order) %>% 
+  write.csv(file = "Output/Output_data/cyclopoid_ids.csv", row.names = F)
+  
+
 if(make_report == T){
   render(input = "Output/Reports/report.Rmd", #Input the path to your .Rmd file here
          #output_file = "report", #Name your file here if you want it to have a different name; leave off the .html, .md, etc. - it will add the correct one automatically
