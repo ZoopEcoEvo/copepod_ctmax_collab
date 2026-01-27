@@ -2,8 +2,6 @@
 title: "About the Project"
 ---
 
-This page summarizes how this group came about, the membership, and the mechanisms of support.
-
 ## Team Members
 
 Łukasz Sługocki
@@ -25,7 +23,3 @@ Urszula Mordacz
 Roman Lysenko
 
 Leonid Svetlichny
-
-## Funding acknowledgments
-
-This project is the result of generous support from XYZ.

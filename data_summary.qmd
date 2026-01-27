@@ -22,8 +22,11 @@ This page summarizes the data collected, including the distribution of sampling 
 library(tidyverse)
 library(rnaturalearth)
 
-ctmax_data = read.csv(file = "Raw_data/ctmax_data.csv") %>% 
-  drop_na(ctmax)
+ctmax_data = read.csv(file = "Output/Output_data/ctmax_data.csv") %>% 
+  drop_na(ctmax) %>% 
+  mutate(species_id = paste(genus, species, sep = " "),
+         species_id = fct_reorder(species_id, ctmax, .fun = mean),
+         habitat = fct_relevel(habitat, "littoral", "surface", "metalimnion")) 
 
 
 theme_matt = function(base_size = 18,
@@ -109,7 +112,7 @@ ggplot(Europe) +
 
 Copepod collections were made from `r length(unique(sites$site))` sites from `r paste0(range(ctmax_data$collection_date), collapse = " to ")`. A total of `r length(ctmax_data$ctmax)` CTmax measurements were made, ranging from `r paste0(range(ctmax_data$ctmax), collapse = " to ")`°C.
 
-The distribution of CTmax measurements from each site and habitat type is shown below.
+The number of CTmax measurements from each site and habitat type is shown below.
 
 ```{r}
 ctmax_data %>% 
@@ -136,7 +139,7 @@ ggplot(ctmax_data, aes(x = order, y = ctmax)) +
   theme_matt()
 ```
 
-CTmax data is shown below for individuals for which a genus was recorded (or could be speculated). Note, these CTmax values do not account for differences in collection temperature, and that there are several genera for which multiple species were likely sampled (e.g. *Eurytemora* and *Acanthocyclops*).
+CTmax data is shown below, aggregated to the genus level. Note, these CTmax values do not account for differences in collection temperature.
 
 ```{r fig.width=9, fig.height=9}
 ctmax_data %>% 
@@ -153,14 +156,33 @@ ggplot(aes(x = genus, y = ctmax, fill = genus)) +
         axis.text.x = element_text(angle = 300, hjust = 0, vjust = 0.5))
 ```
 
+Several genera were represented by multiple species. CTmax data for individual species is shown below. The fill-color of the box plots indicates the genus.
+
+```{r fig.width=20, fig.height=8}
+ctmax_data %>% 
+  filter(genus != "") %>% 
+ggplot(aes(x = species_id, y = ctmax, fill = genus)) + 
+  geom_boxplot(outlier.colour = NA) + 
+  geom_point(position = position_jitter(width = 0.1, height = 0),
+             alpha = 0.5) + 
+  labs(x = "Species", 
+       y = "CTmax (°C)") + 
+  scale_x_discrete(labels = scales::label_wrap(10)) +
+  theme_matt() + 
+  theme(legend.position = "none", 
+        axis.text.x = element_text(angle = 90, hjust = 1, vjust = 0.5,
+                                   lineheight = 0.8))
+```
+
 ## Other variation in CTmax
 
-Broken down by habitat type, there are clear differences between thermal limits in the littoral, surface waters, and metalimnion. Again, these comparisons do not account for differences in collection temperature, but highlight intra-lake spatial variation in thermal limits that may be important to account for.
+We were able to sample copepods from multiple habitats at several of the sites. Broken down by habitat type, there are clear differences in thermal limits between the littoral/surface waters and metalimnion. Again, these comparisons do not account for differences in collection temperature, but highlight intra-lake spatial variation in thermal limits that may be important to account for.
 
 ```{r fig.width=8, fig.height=10}
 ctmax_data %>% 
   mutate(habitat = fct_relevel(habitat, "littoral", "surface", "metalimnion"),
          site = fct_reorder(site, collection_date, .fun = min)) %>% 
+  filter(site %in% c("Siecino", "Drawsko", "Insko", "Glebokie")) %>% 
 ggplot(aes(x = habitat, y = ctmax)) + 
   facet_wrap(site~.) + 
   geom_boxplot() +  
@@ -170,24 +192,27 @@ ggplot(aes(x = habitat, y = ctmax)) +
   theme(axis.text.x = element_text(angle = 300, hjust = 0, vjust = 0.5))
 ```
 
-These differences in thermal limits may be attributed to multiple factors, including variation in species composition and acclimation to the different environments. Shown below are CTmax values from the different habitats, grouped by genus, allowing us to infer the relative contribution of these different mechanisms. The increased thermal limits in the littoral community are largely due to changes in community composition (genera/species in the littoral have higher CTmax values than those in the surface waters). For several genera (Eudiaptomus and Eurytemora, for example), the change in CTmax between the surface wates and metalimnion may be driven by acclimation - individuals from the metalimnion were collected from water around 10°C cooler than the surface waters.
+These differences in thermal limits may be attributed to multiple factors, including variation in species composition and acclimation to the different environments. Shown below are CTmax values from the different habitats, grouped by species, allowing us to examine the effect of habitat / environmental temperature while controlling for for other factors. The increased thermal limits in the littoral community observed in the plot above appear to be due to changes in community composition (genera/species in the littoral have higher CTmax values than those in the surface waters). By contrast, variation between littoral/surface and metalimnion habitats may reflect acclimation to cooler temperatures - individuals from the metalimnion were collected from water around 10°C cooler than the surface waters. This is especially clear for *Eurytemora lacustris*, and the two *Diaptomus* species
 
 ```{r fig.width=9, fig.height=8.5}
 
-hab_comp = ctmax_data %>% 
-  filter(genus != "") %>% 
-  mutate(habitat = fct_relevel(habitat, "littoral", "surface", "metalimnion"),
-         genus = fct_reorder(genus, ctmax, .fun = mean, .desc = T))
+hab_comp_species = ctmax_data %>% 
+  mutate(species_id = paste(genus, species, sep = " ")) %>% 
+  count(species_id, habitat) %>% 
+  count(species_id) %>% 
+  filter(n > 1)
 
 ctmax_data %>% 
   filter(genus != "") %>% 
-  group_by(genus, habitat) %>% 
+  filter(species_id %in% hab_comp_species$species_id) %>% 
+  group_by(genus, species_id, habitat) %>% 
   summarise(mean_ctmax = mean(ctmax)) %>% 
   ungroup() %>% 
   mutate(habitat = fct_relevel(habitat, "littoral", "surface", "metalimnion")) %>% 
 ggplot(aes(x = habitat, y = mean_ctmax, colour = genus, group = genus)) +
-  facet_wrap(genus~.) + 
-  geom_point(data = hab_comp, aes(x = habitat, y = ctmax),
+  facet_wrap(species_id~.) + 
+  geom_point(data = filter(ctmax_data, species_id %in% hab_comp_species$species_id & genus != ""), 
+             aes(x = habitat, y = ctmax),
              alpha = 0.5) + 
   geom_line(linewidth = 2)+ 
   labs(x = "Habitat", 
@@ -199,32 +224,24 @@ ggplot(aes(x = habitat, y = mean_ctmax, colour = genus, group = genus)) +
 
 ```
 
-```{r, include=F}
-ctmax_data %>% 
-  ggplot(aes(x = collection_temp, y = ctmax)) + 
-  facet_wrap(genus~.) + 
-  geom_point() + 
-  geom_smooth(method = "lm", se = F) + 
-  theme_matt_facets()
-```
-
 ## Statistical modelling
 
-We examined the data using a mixed effects model, where CTmax is modeled as a function of collection temperature, genus, and habitat type (with no interactions). Site, tube number (as a proxy for the position within the water bath), and the water bath ID were included as random effects. This model performs fairly well, although there is high variance inflation for both collection temperature and habitat type.
+We examined the data using a mixed effects model, where CTmax is modeled as a function of collection temperature, species ID, and habitat type (with no interactions). Site, tube number (as a proxy for the position within the water bath), and the water bath ID were included as random effects. This model performs fairly well, although there is high variance inflation for both collection temperature and habitat type.
 
 ```{r fig.height=11, fig.width=9}
 
 model_data = ctmax_data %>% 
-  filter(genus != "")
+  filter(genus != "") %>% 
+  mutate(species_id = paste(genus, species, sep = " "))
 
 ctmax.model = lme4::lmer(data = model_data, 
-                         ctmax ~ collection_temp + genus + habitat + (1|site) + (1|tube) + (1|water_bath)) 
+                         ctmax ~ collection_temp + species_id + habitat + (1|site) + (1|tube) + (1|water_bath)) 
 
 performance::check_model(ctmax.model)
 
 ```
 
-An ANOVA indicates strong effects of genus, but no effect of collection temperature or habitat type. This analysis will be more powerful when genera have been disaggregated to the species level.
+An ANOVA unsurprisingly indicates strong effects of species ID, but no effect of collection temperature or habitat type.
 
 ```{r}
 
@@ -232,15 +249,15 @@ car::Anova(ctmax.model) %>% knitr::kable()
 
 ```
 
-Using this model, we can extract the marginal mean effects for each genus (i.e. what is the expected CTmax for each genus, controlling for other factors like collection temperature). Here we show the expected CTmax for each genus at a collection temperature of 20°C. Again, we will plan on using a similar analysis to examine variation in CTmax across species.
+Using this model, we can extract the marginal mean CTmax for each species (i.e. what is the expected CTmax, controlling for other factors like collection temperature). Here we show the expected CTmax for each species at a collection temperature of 20°C. These estimates might be useful as we start to consider how biogeography might affect species' thermal limits.
 
 ```{r}
 
-genus_effects = emmeans::emmeans(ctmax.model, specs = "genus", at = list(collection_temp = 20)) %>% data.frame() %>% 
-  mutate(genus = fct_reorder(genus, emmean, .fun = mean))
+species_effects = emmeans::emmeans(ctmax.model, specs = "species_id", at = list(collection_temp = 20)) %>% data.frame() %>% 
+  mutate(species_id = fct_reorder(species_id, emmean, .fun = mean))
 
 
-ggplot(genus_effects, aes(x = genus, y = emmean)) + 
+ggplot(species_effects, aes(x = species_id, y = emmean)) + 
   geom_errorbar(aes(ymin = emmean - SE, ymax = emmean + SE),
                 width = 0.4) + 
   geom_point(size = 3) + 
@@ -250,4 +267,77 @@ ggplot(genus_effects, aes(x = genus, y = emmean)) +
   theme(legend.position = "none", 
         axis.text.x = element_text(angle = 300, hjust = 0, vjust = 0.5))
 
+```
+
+To highlight variation within each genus, the estimated CTmax values are shown again below arranged by genus. In this configuration, inter-specific variation within several of the genera is more obvious. Eurytemora, Eudiaptomus, Eucyclops, and Thermocyclops for example, all contain several species with divergent thermal limits.
+
+```{r}
+
+species_effects %>% ungroup() %>%  
+  mutate("genus" = str_split_fixed(species_id, pattern = " ", n = 2)[,1],
+         genus = fct_reorder(genus, emmean, .fun = mean)) %>% 
+  ggplot(aes(x = genus, y = emmean, group = species_id, colour = genus)) + 
+  geom_errorbar(aes(ymin = emmean - SE, ymax = emmean + SE),
+                width = 0.4,
+                position = position_dodge(width = 0.5)) + 
+  geom_point(size = 3, position = position_dodge(width = 0.5)) + 
+  labs(x = "Genus", 
+       y = "CTmax (°C)") + 
+  theme_matt() + 
+  theme(legend.position = "none", 
+        axis.text.x = element_text(angle = 300, hjust = 0, vjust = 0.5))
+
+```
+
+## Other Traits
+
+### Body size
+
+Copepods varied widely in size.
+
+```{r fig.width=20, fig.height=8}
+
+ctmax_data %>% 
+  filter(genus != "") %>% 
+  mutate(species_id = fct_reorder(species_id, body_length_um, .fun = mean)) %>% 
+ggplot(aes(x = species_id, y = body_length_um, fill = genus)) + 
+  geom_boxplot(outlier.colour = NA) + 
+  geom_point(position = position_jitter(width = 0.1, height = 0),
+             alpha = 0.5) + 
+  labs(x = "Species", 
+       y = "CTmax (°C)") + 
+  scale_x_discrete(labels = scales::label_wrap(10)) +
+  theme_matt() + 
+  theme(legend.position = "none", 
+        axis.text.x = element_text(angle = 90, hjust = 1, vjust = 0.5,
+                                   lineheight = 0.8))
+```
+
+The relationship between size and thermal limits may also be of interest. This relationship is shown below for species with 10 or more size measurements.
+
+```{r fig.width=15, fig.height=11}
+abund_species = ctmax_data %>% 
+  count(species_id) %>% 
+  filter(n > 9)
+
+size_model_data = filter(ctmax_data, species_id %in% abund_species$species_id)
+
+ggplot(size_model_data, aes(x = body_length_um, y = ctmax)) + 
+  facet_wrap(species_id~., scales = "free") + 
+  geom_point() + 
+  geom_smooth(method = lm) + 
+  theme_matt_facets()
+
+```
+
+When the CTmax vs. size trend is extracted for each species (from a linear model: CTmax as a function of species ID and body length, with interaction), trend estimates tend to be relatively small and have confidence intervals overlapping zero.
+
+```{r}
+
+size.model = lm(data = size_model_data, 
+                ctmax ~ species_id * body_length_um)
+
+emmeans::emtrends(size.model, specs = "species_id", var = "body_length_um") %>% plot() +
+  geom_vline(xintercept = 0) + 
+  theme_matt()
 ```

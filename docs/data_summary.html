@@ -130,6 +130,10 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#taxonomic-variation-in-ctmax" id="toc-taxonomic-variation-in-ctmax" class="nav-link" data-scroll-target="#taxonomic-variation-in-ctmax">Taxonomic variation in CTmax</a></li>
   <li><a href="#other-variation-in-ctmax" id="toc-other-variation-in-ctmax" class="nav-link" data-scroll-target="#other-variation-in-ctmax">Other variation in CTmax</a></li>
   <li><a href="#statistical-modelling" id="toc-statistical-modelling" class="nav-link" data-scroll-target="#statistical-modelling">Statistical modelling</a></li>
+  <li><a href="#other-traits" id="toc-other-traits" class="nav-link" data-scroll-target="#other-traits">Other Traits</a>
+  <ul class="collapse">
+  <li><a href="#body-size" id="toc-body-size" class="nav-link" data-scroll-target="#body-size">Body size</a></li>
+  </ul></li>
   </ul></li>
   </ul>
 </nav>
@@ -171,7 +175,7 @@ ul.task-list li input[type="checkbox"] {
 </div>
 </div>
 <p>Copepod collections were made from 7 sites from 2025-07-21 to 2025-07-28. A total of 295 CTmax measurements were made, ranging from 25.9 to 40.2°C.</p>
-<p>The distribution of CTmax measurements from each site and habitat type is shown below.</p>
+<p>The number of CTmax measurements from each site and habitat type is shown below.</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <table class="table table-sm table-striped small">
@@ -260,7 +264,7 @@ ul.task-list li input[type="checkbox"] {
 </div>
 </div>
 </div>
-<p>CTmax data is shown below for individuals for which a genus was recorded (or could be speculated). Note, these CTmax values do not account for differences in collection temperature, and that there are several genera for which multiple species were likely sampled (e.g.&nbsp;<em>Eurytemora</em> and <em>Acanthocyclops</em>).</p>
+<p>CTmax data is shown below, aggregated to the genus level. Note, these CTmax values do not account for differences in collection temperature.</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
@@ -270,25 +274,35 @@ ul.task-list li input[type="checkbox"] {
 </div>
 </div>
 </div>
-</section>
-<section id="other-variation-in-ctmax" class="level2">
-<h2 class="anchored" data-anchor-id="other-variation-in-ctmax">Other variation in CTmax</h2>
-<p>Broken down by habitat type, there are clear differences between thermal limits in the littoral, surface waters, and metalimnion. Again, these comparisons do not account for differences in collection temperature, but highlight intra-lake spatial variation in thermal limits that may be important to account for.</p>
+<p>Several genera were represented by multiple species. CTmax data for individual species is shown below. The fill-color of the box plots indicates the genus.</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="data_summary_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="768"></p>
+<p><img src="data_summary_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="1920"></p>
 </figure>
 </div>
 </div>
 </div>
-<p>These differences in thermal limits may be attributed to multiple factors, including variation in species composition and acclimation to the different environments. Shown below are CTmax values from the different habitats, grouped by genus, allowing us to infer the relative contribution of these different mechanisms. The increased thermal limits in the littoral community are largely due to changes in community composition (genera/species in the littoral have higher CTmax values than those in the surface waters). For several genera (Eudiaptomus and Eurytemora, for example), the change in CTmax between the surface wates and metalimnion may be driven by acclimation - individuals from the metalimnion were collected from water around 10°C cooler than the surface waters.</p>
+</section>
+<section id="other-variation-in-ctmax" class="level2">
+<h2 class="anchored" data-anchor-id="other-variation-in-ctmax">Other variation in CTmax</h2>
+<p>We were able to sample copepods from multiple habitats at several of the sites. Broken down by habitat type, there are clear differences in thermal limits between the littoral/surface waters and metalimnion. Again, these comparisons do not account for differences in collection temperature, but highlight intra-lake spatial variation in thermal limits that may be important to account for.</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="data_summary_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="864"></p>
+<p><img src="data_summary_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="768"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>These differences in thermal limits may be attributed to multiple factors, including variation in species composition and acclimation to the different environments. Shown below are CTmax values from the different habitats, grouped by species, allowing us to examine the effect of habitat / environmental temperature while controlling for for other factors. The increased thermal limits in the littoral community observed in the plot above appear to be due to changes in community composition (genera/species in the littoral have higher CTmax values than those in the surface waters). By contrast, variation between littoral/surface and metalimnion habitats may reflect acclimation to cooler temperatures - individuals from the metalimnion were collected from water around 10°C cooler than the surface waters. This is especially clear for <em>Eurytemora lacustris</em>, and the two <em>Diaptomus</em> species</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="data_summary_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="864"></p>
 </figure>
 </div>
 </div>
@@ -296,7 +310,7 @@ ul.task-list li input[type="checkbox"] {
 </section>
 <section id="statistical-modelling" class="level2">
 <h2 class="anchored" data-anchor-id="statistical-modelling">Statistical modelling</h2>
-<p>We examined the data using a mixed effects model, where CTmax is modeled as a function of collection temperature, genus, and habitat type (with no interactions). Site, tube number (as a proxy for the position within the water bath), and the water bath ID were included as random effects. This model performs fairly well, although there is high variance inflation for both collection temperature and habitat type.</p>
+<p>We examined the data using a mixed effects model, where CTmax is modeled as a function of collection temperature, species ID, and habitat type (with no interactions). Site, tube number (as a proxy for the position within the water bath), and the water bath ID were included as random effects. This model performs fairly well, although there is high variance inflation for both collection temperature and habitat type.</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
@@ -306,7 +320,7 @@ ul.task-list li input[type="checkbox"] {
 </div>
 </div>
 </div>
-<p>An ANOVA indicates strong effects of genus, but no effect of collection temperature or habitat type. This analysis will be more powerful when genera have been disaggregated to the species level.</p>
+<p>An ANOVA unsurprisingly indicates strong effects of species ID, but no effect of collection temperature or habitat type.</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <table class="table table-sm table-striped small">
@@ -321,27 +335,27 @@ ul.task-list li input[type="checkbox"] {
 <tbody>
 <tr class="odd">
 <td style="text-align: left;">collection_temp</td>
-<td style="text-align: right;">0.5304723</td>
+<td style="text-align: right;">0.7407021</td>
 <td style="text-align: right;">1</td>
-<td style="text-align: right;">0.4664084</td>
+<td style="text-align: right;">0.3894361</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">genus</td>
-<td style="text-align: right;">298.2390841</td>
-<td style="text-align: right;">10</td>
+<td style="text-align: left;">species_id</td>
+<td style="text-align: right;">633.0991274</td>
+<td style="text-align: right;">23</td>
 <td style="text-align: right;">0.0000000</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">habitat</td>
-<td style="text-align: right;">5.2350387</td>
+<td style="text-align: right;">0.4623608</td>
 <td style="text-align: right;">2</td>
-<td style="text-align: right;">0.0729837</td>
+<td style="text-align: right;">0.7935963</td>
 </tr>
 </tbody>
 </table>
 </div>
 </div>
-<p>Using this model, we can extract the marginal mean effects for each genus (i.e.&nbsp;what is the expected CTmax for each genus, controlling for other factors like collection temperature). Here we show the expected CTmax for each genus at a collection temperature of 20°C. Again, we will plan on using a similar analysis to examine variation in CTmax across species.</p>
+<p>Using this model, we can extract the marginal mean CTmax for each species (i.e.&nbsp;what is the expected CTmax, controlling for other factors like collection temperature). Here we show the expected CTmax for each species at a collection temperature of 20°C. These estimates might be useful as we start to consider how biogeography might affect species’ thermal limits.</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
@@ -351,8 +365,54 @@ ul.task-list li input[type="checkbox"] {
 </div>
 </div>
 </div>
+<p>To highlight variation within each genus, the estimated CTmax values are shown again below arranged by genus. In this configuration, inter-specific variation within several of the genera is more obvious. Eurytemora, Eudiaptomus, Eucyclops, and Thermocyclops for example, all contain several species with divergent thermal limits.</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="data_summary_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="other-traits" class="level2">
+<h2 class="anchored" data-anchor-id="other-traits">Other Traits</h2>
+<section id="body-size" class="level3">
+<h3 class="anchored" data-anchor-id="body-size">Body size</h3>
+<p>Copepods varied widely in size.</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="data_summary_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="1920"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>The relationship between size and thermal limits may also be of interest. This relationship is shown below for species with 10 or more size measurements.</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="data_summary_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="1440"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>When the CTmax vs.&nbsp;size trend is extracted for each species (from a linear model: CTmax as a function of species ID and body length, with interaction), trend estimates tend to be relatively small and have confidence intervals overlapping zero.</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="data_summary_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
 
 
+</section>
 </section>
 </section>
 
