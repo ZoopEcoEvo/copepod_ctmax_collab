@@ -30,7 +30,24 @@ if(process_data == T){
     select(data_sheet:body_length_um, "id_notes" = notes) %>% 
     mutate(data_sheet = if_else(data_sheet == 30, 34, data_sheet))
   
-  ctmax_data = left_join(initial_data, ids)
+  biogeography = read.csv("Raw_data/cylopoid_biogeography.csv") %>% 
+    select(genus, species, low_lat, low_lat_elevation, high_lat, high_lat_elevation) %>% 
+    mutate(low_lat_elevation = parse_number(low_lat_elevation),
+           high_lat_elevation = parse_number(high_lat_elevation), 
+           lat_range = high_lat - low_lat, 
+           elev_range = abs(high_lat_elevation - low_lat_elevation))
+  
+  genome_size = readxl::read_excel(path = "Raw_data/calanoid_genome_size.xlsx") %>% 
+    janitor::clean_names()
+  
+  mean_genome_size = genome_size %>% 
+    group_by(species) %>% 
+    summarise(mean_gs = mean(genome_size)) %>% 
+    separate_wider_delim(species, delim = " ", names = c("genus", "species"))
+  
+  ctmax_data = left_join(initial_data, ids) %>% 
+    left_join(biogeography, by = c("genus", "species")) %>% 
+    left_join(mean_genome_size, by = c("genus", "species"))
   
   write.csv(ctmax_data, "Output/Output_data/ctmax_data.csv", row.names = F)
   

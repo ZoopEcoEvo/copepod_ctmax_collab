@@ -21,6 +21,7 @@ This page summarizes the data collected, including the distribution of sampling 
 ```{r message=F, warning=F, echo = F}
 library(tidyverse)
 library(rnaturalearth)
+library(ggpubr)
 
 ctmax_data = read.csv(file = "Output/Output_data/ctmax_data.csv") %>% 
   drop_na(ctmax) %>% 
@@ -28,6 +29,8 @@ ctmax_data = read.csv(file = "Output/Output_data/ctmax_data.csv") %>%
          species_id = fct_reorder(species_id, ctmax, .fun = mean),
          habitat = fct_relevel(habitat, "littoral", "surface", "metalimnion")) 
 
+genome_size = readxl::read_excel(path = "Raw_data/calanoid_genome_size.xlsx") %>% 
+    janitor::clean_names()
 
 theme_matt = function(base_size = 18,
                       dark_text = "grey20"){
@@ -164,7 +167,8 @@ ctmax_data %>%
 ggplot(aes(x = species_id, y = ctmax, fill = genus)) + 
   geom_boxplot(outlier.colour = NA) + 
   geom_point(position = position_jitter(width = 0.1, height = 0),
-             alpha = 0.5) + 
+             alpha = 0.5, 
+             shape = 1) + 
   labs(x = "Species", 
        y = "CTmax (°C)") + 
   scale_x_discrete(labels = scales::label_wrap(10)) +
@@ -172,6 +176,118 @@ ggplot(aes(x = species_id, y = ctmax, fill = genus)) +
   theme(legend.position = "none", 
         axis.text.x = element_text(angle = 90, hjust = 1, vjust = 0.5,
                                    lineheight = 0.8))
+```
+
+## Genome Size Variation 
+
+```{r}
+
+genome_size %>% 
+  mutate(species = fct_reorder(species, genome_size, .fun = mean, .desc = T)) %>% 
+  ggplot(aes(x = species, y = genome_size, fill = species)) + 
+  geom_boxplot(outlier.colour = NA) + 
+  geom_point(position = position_jitter(width = 0.1, height = 0),
+             alpha = 0.5, 
+             shape = 1) + 
+  labs(x = "Species", 
+       y = "Genome Size (picograms)") + 
+  scale_x_discrete(labels = scales::label_wrap(10)) +
+  theme_matt() + 
+  theme(legend.position = "none", 
+        axis.text.x = element_text(angle = 90, hjust = 1, vjust = 0.5,
+                                   lineheight = 0.8))
+
+```
+
+## Range Sizes
+
+Latitudinal ranges were compiled from the literature. These ranges (currently only for cyclopoids) are shown below. Lower latitudinal limits varied substantially across species, but many species shared an upper latitudinal limit at \~70°N.
+
+```{r fig.width=10, fig.height=6}
+
+biogeo_data = ctmax_data %>% 
+  drop_na(low_lat)
+
+biogeo_data %>% 
+  select(species_id, high_lat, low_lat) %>% 
+  distinct() %>% 
+  mutate(species_id = fct_reorder(species_id, low_lat)) %>% 
+  ggplot(aes(x = species_id, colour = species_id)) + 
+  geom_segment(aes(y = low_lat, yend = high_lat),
+               linewidth = 3) + 
+  labs(x = "Species", 
+       y = "Lat. Range") + 
+    scale_x_discrete(labels = scales::label_wrap(10)) +
+  theme_matt() + 
+  theme(legend.position = "none", 
+        axis.text.x = element_text(angle = 90, hjust = 1, vjust = 0.5,
+                                   lineheight = 0.8))
+
+
+```
+
+CTmax tended to decrease with both lower and upper latitudinal limits, but was not related to latitudinal or elevational ranges.
+
+```{r fig.width=10, fig.height=9}
+low_lat_plot = ggplot(biogeo_data, aes(x = low_lat, y = ctmax)) + 
+  geom_point() +
+  labs(x = "Low Lat. Limit",
+       y = "CTmax (°C)") + 
+  theme_matt_facets()
+
+high_lat_plot = ggplot(biogeo_data, aes(x = high_lat, y = ctmax)) + 
+  geom_point() +
+   labs(x = "Upper Lat. Limit",
+       y = "CTmax (°C)") + 
+  theme_matt_facets()
+
+lat_range_plot = ggplot(biogeo_data, aes(x = lat_range, y = ctmax)) + 
+  geom_point() +
+   labs(x = "Latitudinal Range",
+       y = "CTmax (°C)") + 
+  theme_matt_facets()
+
+elev_range_plot = ggplot(biogeo_data, aes(x = elev_range, y = ctmax)) + 
+  geom_point() +
+   labs(x = "Elevational Range",
+       y = "CTmax (°C)") + 
+  theme_matt_facets()
+
+
+ggarrange(low_lat_plot, high_lat_plot, lat_range_plot, elev_range_plot)
+
+```
+
+One interesting pattern is that for almost all species, the low latitude range edge is observed at higher elevations than the upper latitude range edge (only two species break this pattern; *Acanthocyclops einslei and Ectocyclops phaleratus*). These two species have the second and third highest lower latitudinal ranges, respectively. The species with the highest lower latitudinal limit (*Cyclops scutifer*) exhibits only a small decrease in elevation between lower and upper latitudinal limits. If species are tracking climatic isotherms (regions of constant temperature), we'd expect species' elevational ranges to decrease with increasing latitude. Interestingly, these three species do not have consistently low CTmax values, but instead span almost the entire range of values we observed.
+
+```{r fig.width=10, fig.height=8}
+
+elev_change_data = biogeo_data %>% 
+  select(species_id, high_lat_elevation, low_lat_elevation) %>% 
+  distinct() %>% 
+  pivot_longer(cols = c(high_lat_elevation, low_lat_elevation),
+               names_to = "range_lim", 
+               values_to = "elevation") %>% 
+  mutate(range_lim = str_remove_all(range_lim, "_elevation"), 
+         range_lim = fct_relevel(range_lim, "low_lat", "high_lat"))
+
+
+ggplot(elev_change_data, aes(x = range_lim, y = elevation, group = species_id, colour = species_id)) + 
+  geom_point() + 
+  geom_line() + 
+  geom_label(data = filter(elev_change_data, (!(species_id %in% c("Ectocyclops phaleratus", "Thermocyclops crassus")) & range_lim == "low_lat")), 
+             aes(label = species_id),
+             hjust = 1,
+             position = position_nudge(x = -0.01)) + 
+  geom_label(data = filter(elev_change_data, (species_id %in% c("Ectocyclops phaleratus", "Thermocyclops crassus") & range_lim == "high_lat")), 
+             aes(label = species_id),
+             hjust = 0,
+             position = position_nudge(x = 0.01)) + 
+  labs(x = "Range Edge", 
+       y = "Elevation (m)") + 
+  theme_matt() + 
+  theme(legend.position = "none")
+
 ```
 
 ## Other variation in CTmax
