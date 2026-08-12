@@ -270,7 +270,7 @@ ggarrange(low_lat_plot, high_lat_plot, lat_range_plot, elev_range_plot)
 
 One interesting pattern is that for almost all species, the low latitude range edge is observed at higher elevations than the upper latitude range edge (only two species break this pattern; *Acanthocyclops einslei* and *Ectocyclops phaleratus*). These two species have the second and third highest lower latitudinal ranges, respectively. The species with the highest lower latitudinal limit (*Cyclops scutifer*) exhibits only a small decrease in elevation between lower and upper latitudinal limits. If species are tracking climatic isotherms (regions of constant temperature), we'd expect species' elevational ranges to decrease with increasing latitude. Interestingly, these three species do not have consistently low CTmax values, but instead span almost the entire range of values we observed.
 
-```{r fig.width=10, fig.height=8}
+```{r fig.width=10, fig.height=6}
 
 elev_change_data = biogeo_data %>% 
   select(species_id, high_lat_elevation, low_lat_elevation) %>% 
