@@ -33,3 +33,5 @@ po/*~
 rsconnect/
 /.quarto/
 .DS_Store
+
+**/*.quarto_ipynb

@@ -21,6 +21,7 @@ This page summarizes the data collected, including the distribution of sampling 
 ```{r message=F, warning=F, echo = F}
 library(tidyverse)
 library(rnaturalearth)
+library(ggrepel)
 library(ggpubr)
 
 ctmax_data = read.csv(file = "Output/Output_data/ctmax_data.csv") %>% 
@@ -107,6 +108,11 @@ Europe <- world[which(world$continent == "Europe"),]
 ggplot(Europe) +
   geom_sf() + 
   geom_point(data = sites, aes(x = long, y = lat)) + 
+  geom_label_repel(data = sites, aes(x = long, y = lat, label = site),
+    box.padding = 1.2,   # Distance around the text box
+    point.padding = 0.6, # Distance away from the map point
+    segment.color = "grey50" # Draws a line from point to label if moved far
+  ) + 
   coord_sf(xlim = c(12,20), ylim = c(52,55), expand = FALSE) + 
   theme_bw() + 
   theme(panel.grid = element_blank())
@@ -178,7 +184,9 @@ ggplot(aes(x = species_id, y = ctmax, fill = genus)) +
                                    lineheight = 0.8))
 ```
 
-## Genome Size Variation 
+## Genome Size Variation
+
+Genome size was measured for a number of the preserved individuals. These values are shown here for the calanoid copepods in our collections, with points representing replicate measurements.
 
 ```{r}
 
@@ -226,17 +234,19 @@ biogeo_data %>%
 
 ```
 
-CTmax tended to decrease with both lower and upper latitudinal limits, but was not related to latitudinal or elevational ranges.
+CTmax tended to decrease with both lower and upper latitudinal limits, but this decrease was largest for the upper latitudinal limit. There was no relationship between CTmax and latitudinal or elevational ranges. (Note: once we have range size data for the calanoids as well, we'll use the estimated marginal mean CTmax instead of the raw values.)
 
 ```{r fig.width=10, fig.height=9}
 low_lat_plot = ggplot(biogeo_data, aes(x = low_lat, y = ctmax)) + 
   geom_point() +
+  geom_smooth(method = "lm") + 
   labs(x = "Low Lat. Limit",
        y = "CTmax (°C)") + 
   theme_matt_facets()
 
 high_lat_plot = ggplot(biogeo_data, aes(x = high_lat, y = ctmax)) + 
   geom_point() +
+  geom_smooth(method = "lm") + 
    labs(x = "Upper Lat. Limit",
        y = "CTmax (°C)") + 
   theme_matt_facets()
@@ -258,7 +268,7 @@ ggarrange(low_lat_plot, high_lat_plot, lat_range_plot, elev_range_plot)
 
 ```
 
-One interesting pattern is that for almost all species, the low latitude range edge is observed at higher elevations than the upper latitude range edge (only two species break this pattern; *Acanthocyclops einslei and Ectocyclops phaleratus*). These two species have the second and third highest lower latitudinal ranges, respectively. The species with the highest lower latitudinal limit (*Cyclops scutifer*) exhibits only a small decrease in elevation between lower and upper latitudinal limits. If species are tracking climatic isotherms (regions of constant temperature), we'd expect species' elevational ranges to decrease with increasing latitude. Interestingly, these three species do not have consistently low CTmax values, but instead span almost the entire range of values we observed.
+One interesting pattern is that for almost all species, the low latitude range edge is observed at higher elevations than the upper latitude range edge (only two species break this pattern; *Acanthocyclops einslei* and *Ectocyclops phaleratus*). These two species have the second and third highest lower latitudinal ranges, respectively. The species with the highest lower latitudinal limit (*Cyclops scutifer*) exhibits only a small decrease in elevation between lower and upper latitudinal limits. If species are tracking climatic isotherms (regions of constant temperature), we'd expect species' elevational ranges to decrease with increasing latitude. Interestingly, these three species do not have consistently low CTmax values, but instead span almost the entire range of values we observed.
 
 ```{r fig.width=10, fig.height=8}
 
@@ -272,17 +282,14 @@ elev_change_data = biogeo_data %>%
          range_lim = fct_relevel(range_lim, "low_lat", "high_lat"))
 
 
-ggplot(elev_change_data, aes(x = range_lim, y = elevation, group = species_id, colour = species_id)) + 
+ggplot(elev_change_data, aes(x = range_lim, y = elevation, group = species_id, colour = species_id, label = species_id)) + 
   geom_point() + 
   geom_line() + 
-  geom_label(data = filter(elev_change_data, (!(species_id %in% c("Ectocyclops phaleratus", "Thermocyclops crassus")) & range_lim == "low_lat")), 
-             aes(label = species_id),
-             hjust = 1,
-             position = position_nudge(x = -0.01)) + 
-  geom_label(data = filter(elev_change_data, (species_id %in% c("Ectocyclops phaleratus", "Thermocyclops crassus") & range_lim == "high_lat")), 
-             aes(label = species_id),
-             hjust = 0,
-             position = position_nudge(x = 0.01)) + 
+  geom_label_repel(data = filter(elev_change_data, range_lim == "low_lat"),
+                   direction = "y",
+                   point.padding = 1,
+                   hjust = 1, 
+                   nudge_x = -0.5) + 
   labs(x = "Range Edge", 
        y = "Elevation (m)") + 
   theme_matt() + 
@@ -308,7 +315,7 @@ ggplot(aes(x = habitat, y = ctmax)) +
   theme(axis.text.x = element_text(angle = 300, hjust = 0, vjust = 0.5))
 ```
 
-These differences in thermal limits may be attributed to multiple factors, including variation in species composition and acclimation to the different environments. Shown below are CTmax values from the different habitats, grouped by species, allowing us to examine the effect of habitat / environmental temperature while controlling for for other factors. The increased thermal limits in the littoral community observed in the plot above appear to be due to changes in community composition (genera/species in the littoral have higher CTmax values than those in the surface waters). By contrast, variation between littoral/surface and metalimnion habitats may reflect acclimation to cooler temperatures - individuals from the metalimnion were collected from water around 10°C cooler than the surface waters. This is especially clear for *Eurytemora lacustris*, and the two *Diaptomus* species
+These differences in thermal limits may be attributed to multiple factors, including variation in species composition and acclimation to the different environments. Shown below are CTmax values from the different habitats, grouped by species, allowing us to examine the effect of habitat / environmental temperature while controlling for for other factors. The increased thermal limits in the littoral community observed in the plot above appear to be due to changes in community composition (genera/species in the littoral have higher CTmax values than those in the surface waters). By contrast, variation between littoral/surface and metalimnion habitats may reflect acclimation to cooler temperatures - individuals from the metalimnion were collected from water around 10°C cooler than the surface waters. This is especially clear for Eurytemora lacustris, and the two Diaptomus species
 
 ```{r fig.width=9, fig.height=8.5}
 
