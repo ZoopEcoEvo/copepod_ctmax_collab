@@ -443,7 +443,7 @@ ggplot(aes(x = species_id, y = body_length_um, fill = species_id)) +
   geom_point(position = position_jitter(width = 0.1, height = 0),
              alpha = 0.5) + 
   labs(x = "Species", 
-       y = "CTmax (°C)") + 
+       y = "Body Size (mm)") + 
   scale_x_discrete(labels = scales::label_wrap(10)) +
   scale_fill_manual(values = species_cols) + 
   theme_matt() + 
