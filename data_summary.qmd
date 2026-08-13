@@ -23,6 +23,7 @@ library(tidyverse)
 library(rnaturalearth)
 library(ggrepel)
 library(ggpubr)
+library(viridis)
 
 ctmax_data = read.csv(file = "Output/Output_data/ctmax_data.csv") %>% 
   drop_na(ctmax) %>% 
@@ -90,6 +91,13 @@ theme_matt_facets = function(base_size = 18,
       plot.margin = margin(0.25, 0.25, 0.25, 0.25,"cm")
     )
 }
+
+species_cols = c(viridis(13, option = "mako",
+                         begin = 0.3, end = 0.8), 
+                 viridis(12, option = "inferno",
+                         begin = 0.1, end = 0.8))
+
+names(species_cols) = sort(unique(as.character(ctmax_data$species_id)))
 
 ```
 
@@ -170,7 +178,7 @@ Several genera were represented by multiple species. CTmax data for individual s
 ```{r fig.width=20, fig.height=8}
 ctmax_data %>% 
   filter(genus != "") %>% 
-ggplot(aes(x = species_id, y = ctmax, fill = genus)) + 
+ggplot(aes(x = species_id, y = ctmax, fill = species_id)) + 
   geom_boxplot(outlier.colour = NA) + 
   geom_point(position = position_jitter(width = 0.1, height = 0),
              alpha = 0.5, 
@@ -178,6 +186,7 @@ ggplot(aes(x = species_id, y = ctmax, fill = genus)) +
   labs(x = "Species", 
        y = "CTmax (°C)") + 
   scale_x_discrete(labels = scales::label_wrap(10)) +
+  scale_fill_manual(values = species_cols) + 
   theme_matt() + 
   theme(legend.position = "none", 
         axis.text.x = element_text(angle = 90, hjust = 1, vjust = 0.5,
@@ -200,6 +209,7 @@ genome_size %>%
   labs(x = "Species", 
        y = "Genome Size (picograms)") + 
   scale_x_discrete(labels = scales::label_wrap(10)) +
+  scale_fill_manual(values = species_cols) + 
   theme_matt() + 
   theme(legend.position = "none", 
         axis.text.x = element_text(angle = 90, hjust = 1, vjust = 0.5,
@@ -226,6 +236,7 @@ biogeo_data %>%
   labs(x = "Species", 
        y = "Lat. Range") + 
     scale_x_discrete(labels = scales::label_wrap(10)) +
+  scale_colour_manual(values = species_cols) + 
   theme_matt() + 
   theme(legend.position = "none", 
         axis.text.x = element_text(angle = 90, hjust = 1, vjust = 0.5,
@@ -283,13 +294,14 @@ elev_change_data = biogeo_data %>%
 
 
 ggplot(elev_change_data, aes(x = range_lim, y = elevation, group = species_id, colour = species_id, label = species_id)) + 
-  geom_point() + 
-  geom_line() + 
+  geom_line(linewidth = 2) + 
+    geom_point(size = 3.5) + 
   geom_label_repel(data = filter(elev_change_data, range_lim == "low_lat"),
                    direction = "y",
                    point.padding = 1,
                    hjust = 1, 
                    nudge_x = -0.5) + 
+  scale_colour_manual(values = species_cols) + 
   labs(x = "Range Edge", 
        y = "Elevation (m)") + 
   theme_matt() + 
@@ -332,12 +344,13 @@ ctmax_data %>%
   summarise(mean_ctmax = mean(ctmax)) %>% 
   ungroup() %>% 
   mutate(habitat = fct_relevel(habitat, "littoral", "surface", "metalimnion")) %>% 
-ggplot(aes(x = habitat, y = mean_ctmax, colour = genus, group = genus)) +
+ggplot(aes(x = habitat, y = mean_ctmax, colour = species_id, group = genus)) +
   facet_wrap(species_id~.) + 
   geom_point(data = filter(ctmax_data, species_id %in% hab_comp_species$species_id & genus != ""), 
              aes(x = habitat, y = ctmax),
              alpha = 0.5) + 
-  geom_line(linewidth = 2)+ 
+  geom_line(linewidth = 2)+
+  scale_colour_manual(values = species_cols) + 
   labs(x = "Habitat", 
        y = "CTmax (°C)") + 
   theme_matt_facets() + 
@@ -380,12 +393,13 @@ species_effects = emmeans::emmeans(ctmax.model, specs = "species_id", at = list(
   mutate(species_id = fct_reorder(species_id, emmean, .fun = mean))
 
 
-ggplot(species_effects, aes(x = species_id, y = emmean)) + 
+ggplot(species_effects, aes(x = species_id, y = emmean, colour = species_id)) + 
   geom_errorbar(aes(ymin = emmean - SE, ymax = emmean + SE),
                 width = 0.4) + 
   geom_point(size = 3) + 
   labs(x = "Genus", 
        y = "CTmax (°C)") + 
+  scale_colour_manual(values = species_cols) + 
   theme_matt() + 
   theme(legend.position = "none", 
         axis.text.x = element_text(angle = 300, hjust = 0, vjust = 0.5))
@@ -399,13 +413,14 @@ To highlight variation within each genus, the estimated CTmax values are shown a
 species_effects %>% ungroup() %>%  
   mutate("genus" = str_split_fixed(species_id, pattern = " ", n = 2)[,1],
          genus = fct_reorder(genus, emmean, .fun = mean)) %>% 
-  ggplot(aes(x = genus, y = emmean, group = species_id, colour = genus)) + 
+  ggplot(aes(x = genus, y = emmean, group = species_id, colour = species_id)) + 
   geom_errorbar(aes(ymin = emmean - SE, ymax = emmean + SE),
                 width = 0.4,
                 position = position_dodge(width = 0.5)) + 
   geom_point(size = 3, position = position_dodge(width = 0.5)) + 
   labs(x = "Genus", 
        y = "CTmax (°C)") + 
+  scale_colour_manual(values = species_cols) + 
   theme_matt() + 
   theme(legend.position = "none", 
         axis.text.x = element_text(angle = 300, hjust = 0, vjust = 0.5))
@@ -423,13 +438,14 @@ Copepods varied widely in size.
 ctmax_data %>% 
   filter(genus != "") %>% 
   mutate(species_id = fct_reorder(species_id, body_length_um, .fun = mean)) %>% 
-ggplot(aes(x = species_id, y = body_length_um, fill = genus)) + 
+ggplot(aes(x = species_id, y = body_length_um, fill = species_id)) + 
   geom_boxplot(outlier.colour = NA) + 
   geom_point(position = position_jitter(width = 0.1, height = 0),
              alpha = 0.5) + 
   labs(x = "Species", 
        y = "CTmax (°C)") + 
   scale_x_discrete(labels = scales::label_wrap(10)) +
+  scale_fill_manual(values = species_cols) + 
   theme_matt() + 
   theme(legend.position = "none", 
         axis.text.x = element_text(angle = 90, hjust = 1, vjust = 0.5,
